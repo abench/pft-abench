@@ -6,27 +6,27 @@ public class ContactCreationTests extends TestBase {
 
 	@Test
 	public void testCreateContact() throws Exception {
-		openContactPage();
-		gotoContactsPage();
+		app.getContactHelper().openContactPage();
+		app.getContactHelper().gotoContactsPage();
 		
 		ContactData contact = new ContactData(); 
-		
-			contact.firstname = "vasja" + getRandomString();
-			contact.lastname = "pupkin" + getRandomString();
-			contact.address = "pupkin town" + getRandomString();
-			contact.phoneHome =  getRandomString();
-			contact.phoneMobile = getRandomString();
-			contact.phoneWork =   getRandomString();
-			contact.email = "pupkin" + getRandomString()+ "@mail.ru";
-			contact.email2 = "vpupkin" + getRandomString()+ "@mail.ru";
+		String rndStr = app.getContactHelper().getRandomString();
+			contact.firstname = "vasja" + rndStr;
+			contact.lastname = "pupkin" + rndStr;
+			contact.address = "pupkin town" + rndStr;
+			contact.phoneHome =  rndStr;
+			contact.phoneMobile = rndStr;
+			contact.phoneWork =   rndStr;
+			contact.email = "pupkin" + rndStr+ "@mail.ru";
+			contact.email2 = "vpupkin" + rndStr+ "@mail.ru";
 			contact.birthDay = "1";
 			contact.birthMonth =  "January";
-			contact.address2 = "pupkin town No" + getRandomString() ;
-			contact.home2 = "pupkin home No"  + getRandomString() ;
+			contact.address2 = "pupkin town No" + rndStr ;
+			contact.home2 = "pupkin home No"  + rndStr ;
 		
-		fillContactsForm(contact);
-		submitContactsForm();
-		returnMainPage();
+		app.getContactHelper().fillContactsForm(app, this, contact);
+		app.getContactHelper().submitContactsForm();
+		app.getNavigationHelper().returnMainPage();
 	}
 
 

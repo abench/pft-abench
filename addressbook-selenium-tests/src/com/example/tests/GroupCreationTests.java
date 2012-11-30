@@ -8,14 +8,14 @@ public class GroupCreationTests extends TestBase {
 
 		GroupData group = new GroupData();
 		
-		group.groupName = "group" + getRandomString();
-		group.header = "header" + getRandomString();
-		group.footer = "footer"  + getRandomString();
+		group.groupName = "group" + app.getContactHelper().getRandomString();
+		group.header = "header" + app.getContactHelper().getRandomString();
+		group.footer = "footer"  + app.getContactHelper().getRandomString();
 
-		openMainPage();
-		gotoGroupPage();		
-		fillGroupForm(group);
-		submitGroupPage();
-		returnToGroupPage();
+		app.getNavigationHelper().openMainPage();
+		app.getNavigationHelper().gotoGroupPage();		
+		app.getGroupHelper().fillGroupForm(app, this, group);
+		app.getGroupHelper().submitGroupPage();
+		app.getGroupHelper().returnToGroupPage();
 	}
 } 
