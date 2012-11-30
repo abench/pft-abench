@@ -7,14 +7,14 @@ public class GroupCreationTests extends TestBase {
 	public void testCreateGroup() throws Exception {
 
 		GroupData group = new GroupData();
-		
-		group.groupName = "group" + app.getContactHelper().getRandomString();
-		group.header = "header" + app.getContactHelper().getRandomString();
-		group.footer = "footer"  + app.getContactHelper().getRandomString();
+		String RndStr = app.getContactHelper().getRandomString();
+		group.groupName = "group" + RndStr;
+		group.header = "header" + RndStr;
+		group.footer = "footer"  + RndStr;
 
 		app.getNavigationHelper().openMainPage();
 		app.getNavigationHelper().gotoGroupPage();		
-		app.getGroupHelper().fillGroupForm(app, this, group);
+		app.getGroupHelper().fillGroupForm(group);
 		app.getGroupHelper().submitGroupPage();
 		app.getGroupHelper().returnToGroupPage();
 	}

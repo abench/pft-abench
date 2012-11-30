@@ -1,11 +1,7 @@
 package com.example.fw;
 
-import static org.junit.Assert.fail;
-
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -13,8 +9,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class ApplicationManager {
 	public WebDriver driver;
 	public String baseUrl;
-	private StringBuffer verificationErrors = new StringBuffer();
-	
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
 	private ContactHelper contactHelper;
@@ -46,16 +40,9 @@ public class ApplicationManager {
 			contactHelper = new ContactHelper(this);			
 		}
 		return contactHelper;
-	}
-	
-	
-	
-	
+	}	
 	
 	public void stop() {
-		driver.quit();
-
-		
+		driver.quit();		
 	}
-
 }

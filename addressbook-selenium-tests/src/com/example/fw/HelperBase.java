@@ -32,6 +32,17 @@ public abstract class HelperBase {
 		return Integer.toString(rnd.nextInt());
 	
 	}
+
+	protected void type(By locator, String text) {
+		if (text != null) {
+			driver.findElement(locator).clear();		
+			driver.findElement(locator).sendKeys(text);			
+		}
+	}
+
+	protected void click(By locator) {
+		driver.findElement(locator).click();
+	}
 	
 
 }

@@ -24,7 +24,7 @@ public class ContactCreationTests extends TestBase {
 			contact.address2 = "pupkin town No" + rndStr ;
 			contact.home2 = "pupkin home No"  + rndStr ;
 		
-		app.getContactHelper().fillContactsForm(app, this, contact);
+		app.getContactHelper().fillContactsForm(contact);
 		app.getContactHelper().submitContactsForm();
 		app.getNavigationHelper().returnMainPage();
 	}
