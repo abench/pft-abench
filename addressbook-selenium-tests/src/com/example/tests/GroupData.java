@@ -9,9 +9,9 @@ public class GroupData {
 		
 	}
 	
-	public GroupData(String groupName, String header, String footer) {
-		this.groupName = groupName;
-		this.header = header;
-		this.footer = footer;
-	}
+//	public GroupData(String groupName, String header, String footer) {
+//		this.groupName = groupName;
+//		this.header = header;
+//		this.footer = footer;
+//	}
 }
