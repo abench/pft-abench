@@ -1,9 +1,11 @@
-package com.example.tests;
+package com.example.po;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import com.example.tests.GroupData;
 
 
 public class GroupPage {

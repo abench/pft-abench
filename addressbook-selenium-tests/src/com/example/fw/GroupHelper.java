@@ -15,10 +15,14 @@ public class GroupHelper extends HelperBase{
 	}
 
 	public void fillGroupForm(GroupData group) {
-		click(By.name("new"));
+		//initGroupCreation();
 		type(By.name("group_name"), group.groupName);
 		type(By.name("group_header"),group.header);
 		type(By.name("group_footer"),group.footer);
+	}
+
+	public void initGroupCreation() {
+		click(By.name("new"));
 	}
 
 	public void returnToGroupPage() {
@@ -32,7 +36,7 @@ public class GroupHelper extends HelperBase{
 	}
 
 	private void selectGroupByIndex(int index) {
-		click(By.xpath("//input[@name = 'selected[]']"+index+""));
+		click(By.xpath("//input[@name = 'selected[]']["+index+"]"));
 	}
 
 	public void initGroupModification(int index) {
