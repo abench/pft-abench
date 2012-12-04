@@ -2,7 +2,6 @@ package com.example.fw;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 
 import com.example.tests.ContactData;
 
@@ -33,15 +32,34 @@ public class ContactHelper extends HelperBase{
 		type(By.name("phone2"),contact.home2);
 	}
 
-	private void selectByText(By locator, String text) {
-		new Select(driver.findElement(locator)).selectByVisibleText(text);
-	}
-
 	public void openContactPage() {
 		driver.get(manager.baseUrl + "/addressbookv4.1.4/group.php");
 	}
 
 	public void gotoContactsPage() {
 		click(By.linkText("add new"));
+	}
+
+	public void deleteContact(int index) {
+		initContactModificationByIndex(index);
+		// .//input[@value='Delete']
+		click(By.xpath(".//input[@value='Delete']"));
+		
+	}
+
+	public void initContactModificationByIndex(int index) {
+		
+		//XPATH locator of element .//tr[index]/td[7]/a
+		//index should be > 2
+		//because first row reserved for header
+		
+		int i=index+1;
+		click(By.xpath(".//tr["+i+"]/td[7]/a"));
+		
+	}
+
+	public void updateContactsForm() {
+		// TODO Auto-generated method stub
+		
 	}
 }
