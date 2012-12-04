@@ -1,49 +1,78 @@
 package com.example.fw;
 
-
 import org.openqa.selenium.By;
 
 import com.example.tests.ContactData;
 
 public class ContactHelper extends HelperBase{
 
+	//
+	// Table of locators, used in GroupHelper procedures
+	//
+	
+	// Naming rules:
+	// n - By.name       lctr - locator     Name - name of button, link, input, etc.   Lft - left part of locator
+	// x - By.xpath                                                                    Rht - right part of locator
+	// l - By.linkText
+	// a - full or part of web address
+	
+	private static final String xlctrUpdateButton = ".//input[@value='Update']";
+	private static final String xlctrEditButtonRht = "]/td[7]/a";
+	private static final String xlctrEditButtonLft = ".//tr[";
+	private static final String xlctrDeleteButton = ".//input[@value='Delete']";
+	private static final String llctrNewContactsPage = "add new";
+	private static final String alctrContactsPage = "/addressbookv4.1.4/group.php";
+	private static final String nlctrHome2Input = "phone2";
+	private static final String nlctrAddress2Input = "address2";
+	private static final String nlctrByearInput = "byear";
+	private static final String nlctrBmonthInput 	= "bmonth";
+	private static final String nlctrBdayInput 		= "bday";
+	private static final String nlctrEmail2Input 	= "email2";
+	private static final String nlctrEmailInput 	= "email";
+	private static final String nlctrWorkInput 		= "work";
+	private static final String nlctrMobileInput 	= "mobile";
+	private static final String nlctrSubmitButton 	= "submit";
+	private static final String nlctrFirstNameInput = "firstname";
+	private static final String nlctrLastNameInput 	= "lastname";
+	private static final String nlctrAddressInput 	= "address";
+	private static final String nctrlHomeInput 		= "home";
+	
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
 		
 	}
 
 	public void submitContactsForm() {
-		click(By.name("submit"));
+		click(By.name(nlctrSubmitButton));
 	}
 
 	public void fillContactsForm(ContactData contact) {
-		type(By.name("firstname"),contact.firstname);
-		type(By.name("lastname"),contact.lastname);
-		type(By.name("address"),contact.address);
-		type(By.name("home"),contact.phoneHome);
-		type(By.name("mobile"),contact.phoneMobile);
-		type(By.name("work"),contact.phoneWork);
-		type(By.name("email"),contact.email);
-		type(By.name("email2"),contact.email2);
-		selectByText(By.name("bday"), contact.birthDay);
-		selectByText(By.name("bmonth"),contact.birthMonth);
-		type(By.name("byear"),contact.birthYear);
-		type(By.name("address2"),contact.address2);
-		type(By.name("phone2"),contact.home2);
+		type(By.name(nlctrFirstNameInput),contact.firstname);
+		type(By.name(nlctrLastNameInput),contact.lastname);
+		type(By.name(nlctrAddressInput),contact.address);
+		type(By.name(nctrlHomeInput),contact.phoneHome);
+		type(By.name(nlctrMobileInput),contact.phoneMobile);
+		type(By.name(nlctrWorkInput),contact.phoneWork);
+		type(By.name(nlctrEmailInput),contact.email);
+		type(By.name(nlctrEmail2Input),contact.email2);
+		selectByText(By.name(nlctrBdayInput), contact.birthDay);
+		selectByText(By.name(nlctrBmonthInput),contact.birthMonth);
+		type(By.name(nlctrByearInput),contact.birthYear);
+		type(By.name(nlctrAddress2Input),contact.address2);
+		type(By.name(nlctrHome2Input),contact.home2);
 	}
 
 	public void openContactPage() {
-		driver.get(manager.baseUrl + "/addressbookv4.1.4/group.php");
+		driver.get(manager.baseUrl + alctrContactsPage);
 	}
 
 	public void gotoContactsPage() {
-		click(By.linkText("add new"));
+		click(By.linkText(llctrNewContactsPage));
 	}
 
 	public void deleteContact(int index) {
-		initContactModificationByIndex(index);
-		// .//input[@value='Delete']
-		click(By.xpath(".//input[@value='Delete']"));
+		initContactModificationByIndex(index);		
+		click(By.xpath(xlctrDeleteButton));
 		
 	}
 
@@ -51,15 +80,15 @@ public class ContactHelper extends HelperBase{
 		
 		//XPATH locator of element .//tr[index]/td[7]/a
 		//index should be > 2
-		//because first row reserved for header
+		//because first row is reserved for header
 		
 		int i=index+1;
-		click(By.xpath(".//tr["+i+"]/td[7]/a"));
+		click(By.xpath(xlctrEditButtonLft+i+xlctrEditButtonRht));
 		
 	}
 
-	public void updateContactsForm() {
-		// TODO Auto-generated method stub
+	public void updateContactsForm() {		
+		click(By.xpath(xlctrUpdateButton));
 		
 	}
 }

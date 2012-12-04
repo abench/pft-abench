@@ -10,22 +10,12 @@ import org.openqa.selenium.support.ui.Select;
 public abstract class HelperBase {
 	protected ApplicationManager manager;
 	protected WebDriver driver;
-
-	//protected ApplicationManager manager;
+	
 	public HelperBase(ApplicationManager manager){
 		this.manager = manager;
 		this.driver = manager.driver;
-		
 	}
 
-	public boolean isElementPresent(By by) {
-		try {
-			manager.driver.findElement(by);
-			return true;
-		} catch (NoSuchElementException e) {
-			return false;
-		}
-	}
 
 
 	public String getRandomString() {
@@ -51,6 +41,18 @@ public abstract class HelperBase {
 		}
 		
 	}
-	
 
+	
+// candidate to remove
+	
+	public boolean isElementPresent(By by) {
+		try {
+			manager.driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	
 }

@@ -5,46 +5,68 @@ import org.openqa.selenium.By;
 import com.example.tests.GroupData;
 
 public class GroupHelper extends HelperBase{
+	
+	//
+	// Table of locators, used in GroupHelper procedures
+	//
+	
+	// Naming rules:
+	// n - By.name       lctr - locator     Name - name of button, link, input, etc.   Lft - left part of locator
+	// x - By.xpath                                                                    Rht - right part of locator
+	// l - By.linkText
 
+	private static final String nlctrSubmit				= "submit";
+	private static final String nlctrGroupName			= "group_name";
+	private static final String nlctrGroupHeader		= "group_header";
+	private static final String nlctrGroupFooter		= "group_footer";
+	private static final String nlctrNewButton			= "new";
+	private static final String nlctrDeleteButton		= "delete";
+	private static final String xlctrGroupSelectorLft	= "//input[@name = 'selected[]'][";
+	private static final String xlctrGroupSelectorRht 	= "]";
+	private static final String nlctrEditBtn 			= "edit";
+	private static final String nlctrUpdateBtn 			= "update";
+	
 	public GroupHelper(ApplicationManager manager) {
 		super(manager);		
 	}
 
 	public void submitGroupPage() {
-		click(By.name("submit"));		
+		click(By.name(nlctrSubmit));		
 	}
+	
 
-	public void fillGroupForm(GroupData group) {
-		//initGroupCreation();
-		type(By.name("group_name"), group.groupName);
-		type(By.name("group_header"),group.header);
-		type(By.name("group_footer"),group.footer);
+	public void fillGroupForm(GroupData group) {		
+		type(By.name(nlctrGroupName), group.groupName);
+		type(By.name(nlctrGroupHeader),group.header);
+		type(By.name(nlctrGroupFooter),group.footer);
 	}
-
+	
+	
 	public void initGroupCreation() {
-		click(By.name("new"));
+		click(By.name(nlctrNewButton));
 	}
-
-	public void returnToGroupPage() {
-		click(By.linkText("group page"));		
-	}
+	 
 
 	public void deleteGroup(int index) {
 		selectGroupByIndex(index);
-		click(By.name("delete"));
+		click(By.name(nlctrDeleteButton));
 		
 	}
+	
 
-	private void selectGroupByIndex(int index) {
-		click(By.xpath("//input[@name = 'selected[]']["+index+"]"));
+	public void selectGroupByIndex(int index) {
+		click(By.xpath(xlctrGroupSelectorLft +index+xlctrGroupSelectorRht));
 	}
+	
 
 	public void initGroupModification(int index) {
 		selectGroupByIndex(index);
-		click(By.name("edit"));		
+		click(By.name(nlctrEditBtn));		
 	}
 
 	public void submitGroupModification() {
-		click(By.name("update"));	
+		click(By.name(nlctrUpdateBtn));	
 	}
+	
+	
 }
