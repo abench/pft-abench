@@ -1,5 +1,9 @@
 package com.example.tests;
 
+import java.util.List;
+import static org.testng.Assert.assertEquals;
+
+import org.openqa.selenium.logging.NeedsLocalLogs;
 import org.testng.annotations.Test;
 
 public class GroupCreationTests extends TestBase {
@@ -16,11 +20,29 @@ public class GroupCreationTests extends TestBase {
 		group.header = "header" + RndStr;
 		group.footer = "footer"  + RndStr;
 
+		// goto Group page 
+		
 		app.getNavigationHelper().openMainPage();
 		app.getNavigationHelper().gotoGroupPage();
+		
+		// save old state
+		List<GroupData> oldList = app.getGroupHelper().getGroups();
+		
+		// execute actions
 		app.getGroupHelper().initGroupCreation();
 		app.getGroupHelper().fillGroupForm(group);
 		app.getGroupHelper().submitGroupPage();
 		app.getNavigationHelper().returnToGroupPage();
+		
+		// save new state
+		List<GroupData> newList = app.getGroupHelper().getGroups();
+		
+		// compare old and new state
+		//assertEquals(oldList.size()+1,newList.size());
+		assertEquals(oldList.size()+1, newList.size());
+		oldList.add(group);
+		assertEquals(oldList, newList);
+		
+		
 	}
 } 
