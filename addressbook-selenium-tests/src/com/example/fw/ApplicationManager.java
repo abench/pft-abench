@@ -12,6 +12,7 @@ public class ApplicationManager {
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
 	private ContactHelper contactHelper;
+	private RandomDataHelper dataHelper;
 
 	
 	public ApplicationManager(){
@@ -19,6 +20,13 @@ public class ApplicationManager {
 		baseUrl = "http://localhost/";
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
+	}
+
+	public RandomDataHelper getDataHelper(){
+		if (dataHelper == null) {
+			dataHelper = new RandomDataHelper(this);			
+		}
+		return dataHelper;
 	}
 	
 	public NavigationHelper getNavigationHelper(){
