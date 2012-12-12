@@ -31,16 +31,23 @@ public class RandomDataHelper extends HelperBase {
 		return streetList[rnd.nextInt(streetList.length)];		
 	}
 	public String getRandomPhone(){
-		String str = "";
-		int PhoneLength = 12;
-		Random rnd = new Random();
-		for (int i = 0; i<PhoneLength; i++){
+//		String str = "";
+//		int PhoneLength = 12;
+//		Random rnd = new Random();
+//		for (int i = 0; i<PhoneLength; i++){
+//			str=str+rnd.nextInt(9);
+//		}
+		return getRandomNumericalString(12);		
+	}
+	public String getRandomNumericalString(int bound){
+		//int lengthBound = 500;
+		String str="";
+		Random rnd= new Random();
+		int stringLength = rnd.nextInt(bound);
+		for (int i=0;i<stringLength;i++){
 			str=str+rnd.nextInt(9);
 		}
 		return str;		
-	}
-	public String getRandomNumericalString(){
-		return null;		
 	}
 	public String getRandomString(){
 		String alphavitArray[]={"q","w","e","r","t","y","u","i","o","p","a","s","d","f",

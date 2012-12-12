@@ -1,9 +1,10 @@
 package com.example.tests;
 
+import java.util.Collections;
 import java.util.List;
 import static org.testng.Assert.assertEquals;
 
-import org.openqa.selenium.logging.NeedsLocalLogs;
+// import org.openqa.selenium.logging.NeedsLocalLogs;
 import org.testng.annotations.Test;
 
 public class GroupCreationTests extends TestBase {
@@ -38,9 +39,14 @@ public class GroupCreationTests extends TestBase {
 		List<GroupData> newList = app.getGroupHelper().getGroups();
 		
 		// compare old and new state
-		//assertEquals(oldList.size()+1,newList.size());
+		// by length
 		assertEquals(oldList.size()+1, newList.size());
+		
+		// by content
 		oldList.add(group);
+		Collections.sort(oldList);
+		Collections.sort(newList);
+		
 		assertEquals(oldList, newList);
 		
 		
