@@ -57,9 +57,9 @@ public class GroupHelper extends HelperBase{
 		
 	}
 	
-
+	// index starts from 0
 	public void selectGroupByIndex(int index) {
-		click(By.xpath(xlctrGroupSelectorLft +index+xlctrGroupSelectorRht));
+		click(By.xpath(xlctrGroupSelectorLft +index+1+xlctrGroupSelectorRht));
 	}
 	
 
@@ -78,8 +78,6 @@ public class GroupHelper extends HelperBase{
 		for (WebElement checkbox : checkboxes) {
 			GroupData group = new GroupData();
 			String title = checkbox.getAttribute("title");
-			//title.substring("Select (".length(), title.length()-")".length());
-			//group.groupName = title;
 			group.groupName =title.substring("Select (".length(), title.length()-")".length());
 			groups.add(group);
 		}
