@@ -29,6 +29,7 @@ public class GroupHelper extends HelperBase{
 	private static final String xlctrGroupSelectorRht 	= "]";
 	private static final String nlctrEditBtn 			= "edit";
 	private static final String nlctrUpdateBtn 			= "update";
+	private static final String nlctrGroupCheckbox		= "selected[]";
 	
 	public GroupHelper(ApplicationManager manager) {
 		super(manager);		
@@ -74,7 +75,7 @@ public class GroupHelper extends HelperBase{
 
 	public List<GroupData> getGroups() {
 		List<GroupData> groups = new ArrayList<GroupData>();
-		List<WebElement> checkboxes = driver.findElements(By.name("selected[]"));
+		List<WebElement> checkboxes = driver.findElements(By.name(nlctrGroupCheckbox));
 		for (WebElement checkbox : checkboxes) {
 			GroupData group = new GroupData();
 			String title = checkbox.getAttribute("title");
