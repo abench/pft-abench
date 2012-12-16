@@ -28,7 +28,7 @@ public class GroupRemovalTests extends TestBase{
 		List<GroupData> newList = app.getGroupHelper().getGroups();
 		
 		// compare quantity
-		assertEquals(oldList.size(),newList.size()+1);
+		assertEquals(oldList.size()+1,newList.size());
 		
 		// Compare content
 		oldList.remove(0);		

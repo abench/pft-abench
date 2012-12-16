@@ -1,7 +1,10 @@
 package com.example.tests;
 
-import java.util.List;
+import static org.testng.Assert.assertEquals;
 
+
+import java.util.Collections;
+import java.util.List;
 import org.testng.annotations.Test;
 
 public class ContactCreationTests extends TestBase {
@@ -33,6 +36,17 @@ public class ContactCreationTests extends TestBase {
 		app.getContactHelper().fillContactsForm(contact);
 		app.getContactHelper().submitContactsForm();
 		app.getNavigationHelper().returnMainPage();
+		// store state after test
+		List<ContactData> newList = app.getContactHelper().getContacts();
+		//Compare states
+		// by list length
+		assertEquals(oldList.size()+1,newList.size());
+		// by content
+		oldList.add(contact);
+		Collections.sort(oldList);
+		Collections.sort(newList);		
+		assertEquals(oldList, newList);
+
 	}
 
 

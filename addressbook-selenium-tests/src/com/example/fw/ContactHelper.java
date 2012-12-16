@@ -40,6 +40,7 @@ public class ContactHelper extends HelperBase{
 	private static final String nlctrLastNameInput 	= "lastname";
 	private static final String nlctrAddressInput 	= "address";
 	private static final String nctrlHomeInput 		= "home";
+	private static final String nctrlContactCheckbox= "selected[]";
 	
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
@@ -79,14 +80,15 @@ public class ContactHelper extends HelperBase{
 		click(By.xpath(xlctrDeleteButton));
 		
 	}
-
+	
+	//index start from 0 
 	public void initContactModificationByIndex(int index) {
 		
 		//XPATH locator of element .//tr[index]/td[7]/a
 		//index should be > 2
 		//because first row is reserved for header
 		
-		int i=index+1;
+		int i=index+2;
 		click(By.xpath(xlctrEditButtonLft+i+xlctrEditButtonRht));
 		
 	}
@@ -98,14 +100,15 @@ public class ContactHelper extends HelperBase{
 	
 	public List<ContactData> getContacts(){
 		List<ContactData> contacts = new ArrayList<ContactData>();
-		List<WebElement> checkboxes= driver.findElements(By.name("selected[]"));
+		List<WebElement> checkboxes= driver.findElements(By.name(nctrlContactCheckbox));
 		for (WebElement checkbox:checkboxes){
 			ContactData contact = new ContactData();
 			String title = checkbox.getAttribute("title");
 			String[] str= title.substring("Select (".length(), title.length()-")".length()).split("\\s+");
 			//title.  
 			//contact.firstname p.groupName =title.substring("Select (".length(), title.length()-")".length());
-			contact.firstname=str[0];
+			//contact.firstname=str[0];
+			contact.lastname=str[1];
 			contacts.add(contact);
 
 		}
