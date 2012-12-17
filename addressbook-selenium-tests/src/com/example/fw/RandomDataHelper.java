@@ -22,14 +22,21 @@ public class RandomDataHelper extends HelperBase {
 	}
 	
 	public String getRandomCity(){
-		String cityList[]={"London","New York"};
+		String cityList[]={"London","New York",""};
 		return getRandomArrayElement(cityList);		
 	}
 	public String getRandomStreet(){
-		String streetList[]={"Zelenaja","Grushevaja"};
+		String streetList[]={"Zelenaja","Grushevaja",""};
 		Random rnd = new Random();
 		return streetList[rnd.nextInt(streetList.length)];		
 	}
+	
+	public String getRandomCategory(){
+		String categoryList[] = {"Best people","Friends","Family","Colegues","Other","Work",""};
+		Random rnd = new Random();
+		return categoryList[rnd.nextInt(categoryList.length)];
+	}
+	
 	public String getRandomPhone(){
 //		String str = "";
 //		int PhoneLength = 12;
@@ -43,9 +50,11 @@ public class RandomDataHelper extends HelperBase {
 		//int lengthBound = 500;
 		String str="";
 		Random rnd= new Random();
-		int stringLength = rnd.nextInt(bound);
-		for (int i=0;i<stringLength;i++){
-			str=str+rnd.nextInt(9);
+		if (rnd.nextInt(10)!=0){
+			int stringLength = rnd.nextInt(bound);
+			for (int i=0;i<stringLength;i++){
+				str=str+rnd.nextInt(9);
+			}			
 		}
 		return str;		
 	}
@@ -56,11 +65,12 @@ public class RandomDataHelper extends HelperBase {
 				"J","K","L","Z","X","C","V","B","N","M"};
 		String str = "";
 		Random rnd = new Random();
-		int stringLength = rnd.nextInt();
-		for (int i=0; i<stringLength;i++){
-			str=str+alphavitArray[rnd.nextInt(alphavitArray.length)];
-		}
-	
+		if (rnd.nextInt(10)!=0){
+			int stringLength = rnd.nextInt();
+			for (int i=0; i<stringLength;i++){
+				str=str+alphavitArray[rnd.nextInt(alphavitArray.length)];
+			}			
+		}	
 		return str;		
 	}
 

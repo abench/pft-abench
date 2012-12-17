@@ -1,25 +1,32 @@
 package com.example.tests;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import static org.testng.Assert.assertEquals;
 
+import org.testng.annotations.DataProvider;
 // import org.openqa.selenium.logging.NeedsLocalLogs;
 import org.testng.annotations.Test;
 
+
+
 public class GroupCreationTests extends TestBase {
-	@Test
-	public void testCreateGroup() throws Exception {
+	
+	
+	@Test(dataProvider="randomValidGroupGenerator")
+	public void testGroupCreationWithValidData(GroupData group) throws Exception {
 
 		
-		String RndStr = "";
-		RndStr = app.getGroupHelper().getRandomString();
+//		String RndStr = "";
+//		RndStr = app.getGroupHelper().getRandomString();
 		
-		GroupData group = new GroupData();
-		
-		group.groupName = "group" + RndStr;
-		group.header = "header" + RndStr;
-		group.footer = "footer"  + RndStr;
+//		GroupData group = new GroupData();
+//		
+//		group.groupName = "group" + RndStr;
+//		group.header = "header" + RndStr;
+//		group.footer = "footer"  + RndStr;
 
 		// goto Group page 
 		
