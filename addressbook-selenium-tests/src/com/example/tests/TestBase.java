@@ -43,22 +43,22 @@ public class TestBase {
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i=0; i<5; i++){
 			ContactData contact = new ContactData();
-			group.groupName = app.getDataHelper().getRandomCategory();			
-			group.header = app.getDataHelper().getRandomString();
-			group.footer = app.getDataHelper().getRandomString();
+			//group.groupName = app.getDataHelper().getRandomCategory();			
+			//group.header = app.getDataHelper().getRandomString();
+			//group.footer = app.getDataHelper().getRandomString();
 			
-			contact.firstname = "vasja" + rndStr;
-			contact.lastname = "pupkin" + rndStr;
-			contact.address = "pupkin town" + rndStr;
-			contact.phoneHome =  rndStr;
-			contact.phoneMobile = rndStr;
-			contact.phoneWork =   rndStr;
-			contact.email = "pupkin" + rndStr+ "@mail.ru";
-			contact.email2 = "vpupkin" + rndStr+ "@mail.ru";
-			contact.birthDay = "1";
+			contact.firstname = app.getDataHelper().getRandomFirstName();
+			contact.lastname = app.getDataHelper().getRandomSecondName();
+			contact.address = app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3);
+			contact.phoneHome =  app.getDataHelper().getRandomPhone();
+			contact.phoneMobile = app.getDataHelper().getRandomPhone();
+			contact.phoneWork = app.getDataHelper().getRandomPhone();
+			contact.email = contact.firstname+"@mail.ru";
+			contact.email2 =contact.firstname + app.getDataHelper().getRandomNumericalString(3) + "@mail.ru";
+			contact.birthDay = app.getDataHelper().getRandomNumericalString(30);
 			contact.birthMonth =  "January";
-			contact.address2 = "pupkin town No" + rndStr ;
-			contact.home2 = "pupkin home No"  + rndStr ;
+			contact.address2 = app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3); ;
+			contact.home2 = app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3); ;
 
 			
 			list.add(new Object[]{contact});			
