@@ -41,9 +41,9 @@ public class GroupHelper extends HelperBase{
 	
 
 	public void fillGroupForm(GroupData group) {		
-		type(By.name(nlctrGroupName), group.groupName);
-		type(By.name(nlctrGroupHeader),group.header);
-		type(By.name(nlctrGroupFooter),group.footer);
+		type(By.name(nlctrGroupName), group.getGroupName());
+		type(By.name(nlctrGroupHeader),group.getHeader());
+		type(By.name(nlctrGroupFooter),group.getFooter());
 	}
 	
 	
@@ -76,11 +76,11 @@ public class GroupHelper extends HelperBase{
 	public List<GroupData> getGroups() {
 		List<GroupData> groups = new ArrayList<GroupData>();
 		List<WebElement> checkboxes = driver.findElements(By.name(nlctrGroupCheckbox));
-		for (WebElement checkbox : checkboxes) {
+		for (WebElement checkbox : checkboxes) {			
+			String atr = checkbox.getAttribute("title");
+			String title = atr.substring("Select (".length(), atr.length()-")".length());
 			GroupData group = new GroupData();
-			String title = checkbox.getAttribute("title");
-			group.groupName =title.substring("Select (".length(), title.length()-")".length());
-			groups.add(group);
+			groups.add(group.withGroupName(title));
 		}
 		
 		return groups;

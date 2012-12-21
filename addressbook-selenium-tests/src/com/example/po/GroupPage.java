@@ -49,9 +49,9 @@ public class GroupPage {
 	}
 	
 	public void fillGroupForm(GroupData data){
-		fillField(groupNameLocator,data.groupName);
-		fillField(groupHeaderLocator, data.header);
-		fillField(groupFooterLocator, data.footer);
+		fillField(groupNameLocator,data.getGroupName());
+		fillField(groupHeaderLocator, data.getHeader());
+		fillField(groupFooterLocator, data.getFooter());
 	}
 	public WebElement getSubmitButton(){
 		return driver.findElement(By.name(submitButtonLocator));		

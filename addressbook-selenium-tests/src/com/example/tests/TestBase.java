@@ -29,14 +29,15 @@ public class TestBase {
 	public Iterator<Object[]> randomValidGroupGenerator(){
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i=0; i<5; i++){
-			GroupData group = new GroupData();
-			group.groupName = app.getDataHelper().getRandomCategory();			
-			group.header = app.getDataHelper().getRandomString();
-			group.footer = app.getDataHelper().getRandomString();
+			GroupData group = new GroupData()
+				.withGroupName(app.getDataHelper().getRandomCategory())
+				.withHeader(app.getDataHelper().getRandomString())
+				.withFooter(app.getDataHelper().getRandomString());
 			list.add(new Object[]{group});			
 		}
 		return list.iterator();
 	}
+
 
 	@DataProvider
 	public Iterator<Object[]> randomValidContactGenerator(){
