@@ -55,8 +55,8 @@ public class TestBase {
 			contact.phoneWork = app.getDataHelper().getRandomPhone();
 			contact.email = contact.firstname+"@mail.ru";
 			contact.email2 =contact.firstname + app.getDataHelper().getRandomNumericalString(3) + "@mail.ru";
-			contact.birthDay = app.getDataHelper().getRandomNumericalString(30);
-			contact.birthMonth =  "January";
+			contact.birthDay = app.getDataHelper().getRandomDay();
+			contact.birthMonth =  app.getDataHelper().getRandomMonth();
 			contact.address2 = app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3); ;
 			contact.home2 = app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3); ;
 

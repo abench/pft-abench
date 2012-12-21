@@ -37,17 +37,22 @@ public class RandomDataHelper extends HelperBase {
 		return categoryList[rnd.nextInt(categoryList.length)];
 	}
 	
+	public String getRandomDay(){
+		String categoryList[] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		Random rnd = new Random();
+		return categoryList[rnd.nextInt(categoryList.length)];
+	}
+	
+	public String getRandomMonth(){
+		String categoryList[] = {"Jabuary","February","March","April","May","June","July","August","September","October","November","December"};
+		Random rnd = new Random();
+		return categoryList[rnd.nextInt(categoryList.length)];
+	}
+	
 	public String getRandomPhone(){
-//		String str = "";
-//		int PhoneLength = 12;
-//		Random rnd = new Random();
-//		for (int i = 0; i<PhoneLength; i++){
-//			str=str+rnd.nextInt(9);
-//		}
 		return getRandomNumericalString(12);		
 	}
 	public String getRandomNumericalString(int bound){
-		//int lengthBound = 500;
 		String str="";
 		Random rnd= new Random();
 		if (rnd.nextInt(10)!=0){

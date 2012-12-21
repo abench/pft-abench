@@ -1,13 +1,8 @@
 package com.example.tests;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import static org.testng.Assert.assertEquals;
-
-import org.testng.annotations.DataProvider;
-// import org.openqa.selenium.logging.NeedsLocalLogs;
 import org.testng.annotations.Test;
 
 
