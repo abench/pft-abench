@@ -44,22 +44,19 @@ public class TestBase {
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i=0; i<5; i++){
 			ContactData contact = new ContactData();
-			//group.groupName = app.getDataHelper().getRandomCategory();			
-			//group.header = app.getDataHelper().getRandomString();
-			//group.footer = app.getDataHelper().getRandomString();
 			
-			contact.firstname = app.getDataHelper().getRandomFirstName();
-			contact.lastname = app.getDataHelper().getRandomSecondName();
-			contact.address = app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3);
-			contact.phoneHome =  app.getDataHelper().getRandomPhone();
-			contact.phoneMobile = app.getDataHelper().getRandomPhone();
-			contact.phoneWork = app.getDataHelper().getRandomPhone();
-			contact.email = contact.firstname+"@mail.ru";
-			contact.email2 =contact.firstname + app.getDataHelper().getRandomNumericalString(3) + "@mail.ru";
-			contact.birthDay = app.getDataHelper().getRandomDay();
-			contact.birthMonth =  app.getDataHelper().getRandomMonth();
-			contact.address2 = app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3); ;
-			contact.home2 = app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3); ;
+				contact.withFirstname(app.getDataHelper().getRandomFirstName())
+				.withLastname(app.getDataHelper().getRandomSecondName())
+				.withAddress(app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3))
+				.withPhoneHome(app.getDataHelper().getRandomPhone())
+				.withPhoneMobile(app.getDataHelper().getRandomPhone())
+				.withPhoneWork(app.getDataHelper().getRandomPhone())
+				.withEmail(contact.firstname+"@mail.ru")
+				.withEmail2(contact.firstname + app.getDataHelper().getRandomNumericalString(3) + "@mail.ru")
+				.withBirthDay(app.getDataHelper().getRandomDay())
+				.withBirthMonth(app.getDataHelper().getRandomMonth())
+				.withAddress(app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3))
+				.withHome2(app.getDataHelper().getRandomCity() + app.getDataHelper().getRandomStreet()+app.getDataHelper().getRandomNumericalString(3));
 
 			
 			list.add(new Object[]{contact});			

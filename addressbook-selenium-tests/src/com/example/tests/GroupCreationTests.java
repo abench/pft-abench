@@ -14,14 +14,6 @@ public class GroupCreationTests extends TestBase {
 	public void testGroupCreationWithValidData(GroupData group) throws Exception {
 
 		
-//		String RndStr = "";
-//		RndStr = app.getGroupHelper().getRandomString();
-		
-//		GroupData group = new GroupData();
-//		
-//		group.groupName = "group" + RndStr;
-//		group.header = "header" + RndStr;
-//		group.footer = "footer"  + RndStr;
 
 		// goto Group page 
 		

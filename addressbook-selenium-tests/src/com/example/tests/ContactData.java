@@ -53,6 +53,64 @@ public class ContactData implements Comparable<ContactData>{
 	public int compareTo(ContactData other) {
 		return this.lastname.compareTo(other.lastname);
 	}
+
+	public ContactData withFirstname(String randomFirstName) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withLastname(String randomSecondName) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withAddress(String string) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withPhoneHome(String randomPhone) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withPhoneMobile(String randomPhone) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withPhoneWork(String randomPhone) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withEmail(String string) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withEmail2(String string) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withBirthDay(String randomDay) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withBirthMonth(String randomMonth) {
+		// TODO Auto-generated method stub
+		return this;
+	}
+
+	public ContactData withHome2(String string) {
+		// TODO Auto-generated method stub
+		return this;
+		
+	}
+	
+	
 	
 	
 //	public ContactData(String firstname, String lastname, String address,
