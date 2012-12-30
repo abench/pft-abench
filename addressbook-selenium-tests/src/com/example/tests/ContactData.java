@@ -54,81 +54,59 @@ public class ContactData implements Comparable<ContactData>{
 		return this.lastname.compareTo(other.lastname);
 	}
 
-	public ContactData withFirstname(String randomFirstName) {
-		// TODO Auto-generated method stub
+	public ContactData withFirstname(String firstName) {
+		this.firstname = firstName;
 		return this;
 	}
 
-	public ContactData withLastname(String randomSecondName) {
-		// TODO Auto-generated method stub
+	public ContactData withLastname(String lastName) {
+		this.lastname = lastName;
 		return this;
 	}
 
-	public ContactData withAddress(String string) {
-		// TODO Auto-generated method stub
+	public ContactData withAddress(String address) {
+		this.address = address;
 		return this;
 	}
 
-	public ContactData withPhoneHome(String randomPhone) {
-		// TODO Auto-generated method stub
+	public ContactData withPhoneHome(String phone) {
+		this.phoneHome = phone;
 		return this;
 	}
 
-	public ContactData withPhoneMobile(String randomPhone) {
-		// TODO Auto-generated method stub
+	public ContactData withPhoneMobile(String phone) {
+		this.phoneMobile = phone;
 		return this;
 	}
 
-	public ContactData withPhoneWork(String randomPhone) {
-		// TODO Auto-generated method stub
+	public ContactData withPhoneWork(String phone) {
+		this.phoneWork = phone;
 		return this;
 	}
 
-	public ContactData withEmail(String string) {
-		// TODO Auto-generated method stub
+	public ContactData withEmail(String email) {
+		this.email = email;
 		return this;
 	}
 
-	public ContactData withEmail2(String string) {
-		// TODO Auto-generated method stub
+	public ContactData withEmail2(String email) {		
+		this.email2 = email;		
 		return this;
 	}
 
-	public ContactData withBirthDay(String randomDay) {
-		// TODO Auto-generated method stub
+	public ContactData withBirthDay(String day) {
+		this.birthDay = day;
 		return this;
 	}
 
-	public ContactData withBirthMonth(String randomMonth) {
-		// TODO Auto-generated method stub
+	public ContactData withBirthMonth(String month) {		
+		this.birthMonth = month;
 		return this;
 	}
 
-	public ContactData withHome2(String string) {
-		// TODO Auto-generated method stub
+	public ContactData withHome2(String home) {
+		this.home2 = home;
 		return this;
 		
-	}
-	
-	
-	
-	
-//	public ContactData(String firstname, String lastname, String address,
-//			String phoneHome, String phoneMobile, String phoneWork,
-//			String email, String email2, String birthDay, String birthMonth,
-//			String birthYear, String address2, String home2) {
-//		this.firstname = firstname;
-//		this.lastname = lastname;
-//		this.address = address;
-//		this.phoneHome = phoneHome;
-//		this.phoneMobile = phoneMobile;
-//		this.phoneWork = phoneWork;
-//		this.email = email;
-//		this.email2 = email2;
-//		this.birthDay = birthDay;
-//		this.birthMonth = birthMonth;
-//		this.birthYear = birthYear;
-//		this.address2 = address2;
-//		this.home2 = home2;
-//	}
+	}	
 }
