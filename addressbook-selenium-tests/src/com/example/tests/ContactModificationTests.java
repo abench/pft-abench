@@ -26,15 +26,11 @@ public class ContactModificationTests extends TestBase {
 
 		
 		
-		app.getContactHelper().initContactModificationByIndex(index);
-//		ContactData contact=new ContactData();
-//		contact.firstname = "vasjutka";
-//		contact.lastname = "pupchenko";
-//		contact.birthDay = "5";
-//		contact.birthMonth ="February";
-		app.getContactHelper().fillContactsForm(contact);
-		app.getContactHelper().updateContactsForm();
-		app.getNavigationHelper().openMainPage();
+		app.getContactHelper().initContactModificationByIndex(index)
+			.fillContactsForm(contact)
+			.updateContactsForm()
+			.openMainPage();
+		
 		//store state after test
 		List<ContactData> newList = app.getContactHelper().getContacts();
 		//Compare

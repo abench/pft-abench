@@ -1,27 +1,42 @@
 package com.example.tests;
 
 public class ContactData implements Comparable<ContactData>{
-	public String firstname;
-	public String lastname;
-	public String address;
-	public String phoneHome;
-	public String phoneMobile;
-	public String phoneWork;
-	public String email;
-	public String email2;
-	public String birthDay;
-	public String birthMonth;
-	public String birthYear;
-	public String address2;
-	public String home2;
+	private String firstname;
+	private String lastname;
+	private String address;
+	private String phoneHome;
+	private String phoneMobile;
+	private String phoneWork;
+	private String email;
+	private String email2;
+	private String birthDay;
+	private String birthMonth;
+	private String birthYear;
+	private String address2;
+	private String home2;
 
 	public ContactData() {
 	}
 
+	
+	
+//	@Override
+//	public String toString() {
+//		return "ContactData [lastname=" + lastname + "]";
+//	}
+
 	@Override
 	public String toString() {
-		return "ContactData [lastname=" + lastname + "]";
+		return "ContactData [firstname=" + firstname + ", lastname=" + lastname
+				+ ", address=" + address + ", phoneHome=" + phoneHome
+				+ ", phoneMobile=" + phoneMobile + ", phoneWork=" + phoneWork
+				+ ", email=" + email + ", email2=" + email2 + ", birthDay="
+				+ birthDay + ", birthMonth=" + birthMonth + ", birthYear="
+				+ birthYear + ", address2=" + address2 + ", home2=" + home2
+				+ "]";
 	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -54,6 +69,9 @@ public class ContactData implements Comparable<ContactData>{
 		return this.lastname.compareTo(other.lastname);
 	}
 
+	
+// Modified setters
+	
 	public ContactData withFirstname(String firstName) {
 		this.firstname = firstName;
 		return this;
@@ -79,6 +97,39 @@ public class ContactData implements Comparable<ContactData>{
 		return this;
 	}
 
+	public ContactData withPhoneWork(String phone) {
+		this.phoneWork = phone;
+		return this;
+	}
+
+	public ContactData withEmail(String email) {
+		this.email = email;
+		return this;
+	}
+
+	public ContactData withEmail2(String email) {		
+		this.email2 = email;		
+		return this;
+	}
+
+	public ContactData withBirthDay(String day) {
+		this.birthDay = day;
+		return this;
+	}
+
+	public ContactData withBirthMonth(String month) {		
+		this.birthMonth = month;
+		return this;
+	}
+
+	public ContactData withHome2(String home) {
+		this.home2 = home;
+		return this;
+		
+	}	
+	
+// Getters
+	
 	public String getFirstname() {
 		return firstname;
 	}
@@ -131,34 +182,4 @@ public class ContactData implements Comparable<ContactData>{
 		return home2;
 	}
 
-	public ContactData withPhoneWork(String phone) {
-		this.phoneWork = phone;
-		return this;
-	}
-
-	public ContactData withEmail(String email) {
-		this.email = email;
-		return this;
-	}
-
-	public ContactData withEmail2(String email) {		
-		this.email2 = email;		
-		return this;
-	}
-
-	public ContactData withBirthDay(String day) {
-		this.birthDay = day;
-		return this;
-	}
-
-	public ContactData withBirthMonth(String month) {		
-		this.birthMonth = month;
-		return this;
-	}
-
-	public ContactData withHome2(String home) {
-		this.home2 = home;
-		return this;
-		
-	}	
 }

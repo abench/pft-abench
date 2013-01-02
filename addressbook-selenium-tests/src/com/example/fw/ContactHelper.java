@@ -41,48 +41,64 @@ public class ContactHelper extends HelperBase{
 	private static final String nlctrAddressInput 	= "address";
 	private static final String nctrlHomeInput 		= "home";
 	private static final String nctrlContactCheckbox= "selected[]";
+	private static final String llctrMainPage 		= "home page";
+	private static final String alctrMainPage 		= "/addressbookv4.1.4/";	
 	
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
 		
 	}
 
-	public void submitContactsForm() {
+	public ContactHelper submitContactsForm() {
 		click(By.name(nlctrSubmitButton));
+		return this;
 	}
 
-	public void fillContactsForm(ContactData contact) {
-		type(By.name(nlctrFirstNameInput),contact.firstname);
-		type(By.name(nlctrLastNameInput),contact.lastname);
-		type(By.name(nlctrAddressInput),contact.address);
-		type(By.name(nctrlHomeInput),contact.phoneHome);
-		type(By.name(nlctrMobileInput),contact.phoneMobile);
-		type(By.name(nlctrWorkInput),contact.phoneWork);
-		type(By.name(nlctrEmailInput),contact.email);
-		type(By.name(nlctrEmail2Input),contact.email2);
-		selectByText(By.name(nlctrBdayInput), contact.birthDay);
-		selectByText(By.name(nlctrBmonthInput),contact.birthMonth);
-		type(By.name(nlctrByearInput),contact.birthYear);
-		type(By.name(nlctrAddress2Input),contact.address2);
-		type(By.name(nlctrHome2Input),contact.home2);
+	public ContactHelper fillContactsForm(ContactData contact) {
+		type(By.name(nlctrFirstNameInput),contact.getFirstname());
+		type(By.name(nlctrLastNameInput),contact.getLastname());
+		type(By.name(nlctrAddressInput),contact.getAddress());
+		type(By.name(nctrlHomeInput),contact.getPhoneHome());
+		type(By.name(nlctrMobileInput),contact.getPhoneMobile());
+		type(By.name(nlctrWorkInput),contact.getPhoneWork());
+		type(By.name(nlctrEmailInput),contact.getEmail());
+		type(By.name(nlctrEmail2Input),contact.getEmail2());
+		selectByText(By.name(nlctrBdayInput), contact.getBirthDay());
+		selectByText(By.name(nlctrBmonthInput),contact.getBirthMonth());
+		type(By.name(nlctrByearInput),contact.getBirthYear());
+		type(By.name(nlctrAddress2Input),contact.getAddress2());
+		type(By.name(nlctrHome2Input),contact.getHome2());
+		return this;
 	}
 
-	public void openContactPage() {
+	public ContactHelper openContactPage() {
 		driver.get(manager.baseUrl + alctrContactsPage);
+		return this;
 	}
 
-	public void gotoContactsPage() {
+	public ContactHelper gotoContactsPage() {
 		click(By.linkText(llctrNewContactsPage));
+		return this;
+	}
+	
+	public void returnMainPage() {
+		driver.findElement(By.linkText(llctrMainPage)).click();
+	}
+	
+	public void openMainPage() {
+		driver.get(manager.baseUrl + alctrMainPage);
 	}
 
-	public void deleteContact(int index) {
+
+
+	public ContactHelper deleteContact(int index) {
 		initContactModificationByIndex(index);		
 		click(By.xpath(xlctrDeleteButton));
-		
+		return this;
 	}
 	
 	//index start from 0 
-	public void initContactModificationByIndex(int index) {
+	public ContactHelper initContactModificationByIndex(int index) {
 		
 		//XPATH locator of element .//tr[index]/td[7]/a
 		//index should be > 2
@@ -90,27 +106,21 @@ public class ContactHelper extends HelperBase{
 		
 		int i=index+2;
 		click(By.xpath(xlctrEditButtonLft+i+xlctrEditButtonRht));
-		
+		return this;
 	}
 
-	public void updateContactsForm() {		
+	public ContactHelper updateContactsForm() {		
 		click(By.xpath(xlctrUpdateButton));
-		
+		return this;
 	}
 	
 	public List<ContactData> getContacts(){
 		List<ContactData> contacts = new ArrayList<ContactData>();
 		List<WebElement> checkboxes= driver.findElements(By.name(nctrlContactCheckbox));
-		for (WebElement checkbox:checkboxes){
-			ContactData contact = new ContactData();
+		for (WebElement checkbox:checkboxes){			
 			String title = checkbox.getAttribute("title");
 			String[] str= title.substring("Select (".length(), title.length()-")".length()).split("\\s+");
-			//title.  
-			//contact.firstname p.groupName =title.substring("Select (".length(), title.length()-")".length());
-			//contact.firstname=str[0];
-			contact.lastname=str[1];
-			contacts.add(contact);
-
+			contacts.add(new ContactData().withLastname(str[1]));
 		}
 		
 		return contacts;

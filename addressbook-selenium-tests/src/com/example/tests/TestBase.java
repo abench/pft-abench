@@ -44,16 +44,16 @@ public class TestBase {
 	public Iterator<Object[]> randomValidContactGenerator(){
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (int i=0; i<5; i++){
-			ContactData contact = new ContactData();
-			
-				contact.withFirstname(getRandomFirstName())
+			String randomFirstname = getRandomFirstName();
+			ContactData contact = new ContactData()
+				.withFirstname(randomFirstname)
 				.withLastname(getRandomSecondName())
 				.withAddress(getRandomAddress())
 				.withPhoneHome(getRandomPhone())
 				.withPhoneMobile(getRandomPhone())
 				.withPhoneWork(getRandomPhone())
-				.withEmail(getRandomEmail(contact.firstname))
-				.withEmail2(getRandomEmail(contact.firstname))
+				.withEmail(getRandomEmail(randomFirstname))
+				.withEmail2(getRandomEmail(randomFirstname))
 				.withBirthDay(getRandomDay())
 				.withBirthMonth(getRandomMonth())
 				.withAddress(getRandomAddress())
