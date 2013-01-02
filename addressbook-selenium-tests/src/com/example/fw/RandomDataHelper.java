@@ -2,57 +2,53 @@ package com.example.fw;
 
 import java.util.Random;
 
-public class RandomDataHelper extends HelperBase {
+public class RandomDataHelper{
 
-	public RandomDataHelper(ApplicationManager manager) {
-		super(manager);
-	}
-	public String getRandomArrayElement(String a[]){
+//	public RandomDataHelper(ApplicationManager manager) {
+//		super(manager);
+//	}
+	public static String getRandomArrayElement(String a[]){
 		Random rnd = new Random();
 		return a[rnd.nextInt(a.length)];
 	}
-	public String getRandomFirstName(){
+	public static String getRandomFirstName(){
 		String firstNameList[]={"Vasja","Petya"};
 		return getRandomArrayElement(firstNameList);		
 	}
 	
-	public String getRandomSecondName(){
+	public static String getRandomSecondName(){
 		String secondNameList[]={"Vasiljev","Petrov","Ivanov"};
 		return getRandomArrayElement(secondNameList);		
 	}
 	
-	public String getRandomCity(){
+	public static String getRandomCity(){
 		String cityList[]={"London","New York",""};
 		return getRandomArrayElement(cityList);		
 	}
-	public String getRandomStreet(){
+	public static String getRandomStreet(){
 		String streetList[]={"Zelenaja","Grushevaja",""};
-		Random rnd = new Random();
-		return streetList[rnd.nextInt(streetList.length)];		
+		return getRandomArrayElement(streetList);		
 	}
 	
-	public String getRandomCategory(){
+	public static String getRandomCategory(){
 		String categoryList[] = {"Best people","Friends","Family","Colegues","Other","Work",""};
-		Random rnd = new Random();
-		return categoryList[rnd.nextInt(categoryList.length)];
+		return getRandomArrayElement(categoryList);
 	}
 	
-	public String getRandomDay(){
-		String categoryList[] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-		Random rnd = new Random();
-		return categoryList[rnd.nextInt(categoryList.length)];
+	public static String getRandomDay(){
+		String daysList[] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		return getRandomArrayElement(daysList);
 	}
 	
-	public String getRandomMonth(){
-		String categoryList[] = {"Jabuary","February","March","April","May","June","July","August","September","October","November","December"};
-		Random rnd = new Random();
-		return categoryList[rnd.nextInt(categoryList.length)];
+	public static String getRandomMonth(){
+		String monthList[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+		return getRandomArrayElement(monthList);
 	}
 	
-	public String getRandomPhone(){
+	public static String getRandomPhone(){
 		return getRandomNumericalString(12);		
 	}
-	public String getRandomNumericalString(int bound){
+	public static String getRandomNumericalString(int bound){
 		String str="";
 		Random rnd= new Random();
 		if (rnd.nextInt(10)!=0){
@@ -63,7 +59,7 @@ public class RandomDataHelper extends HelperBase {
 		}
 		return str;		
 	}
-	public String getRandomString(){
+	public static String getRandomString(){
 		String alphavitArray[]={"q","w","e","r","t","y","u","i","o","p","a","s","d","f",
 				"g","h","j","k","l","z","x","c","v","b","n","m",
 				"Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H",
@@ -76,8 +72,20 @@ public class RandomDataHelper extends HelperBase {
 				str=str+alphavitArray[rnd.nextInt(alphavitArray.length)];
 			}			
 		}	
-		return str;		
+		return str;
+		
+		
 	}
+	public static String getRandomAddress(){
+		return getRandomCity() + "," + getRandomStreet() + "," + getRandomNumericalString(3);
+	}
+	public static String getRandomEmail(String userName){
+		String emailProvidersList[] = {"mail.ru","google.com","yandex.ru","mailinator.com","","anonymous.org"};
+		return userName+getRandomNumericalString(3)+"@"+getRandomArrayElement(emailProvidersList);
+		
+		
+	}
+
 
 
 

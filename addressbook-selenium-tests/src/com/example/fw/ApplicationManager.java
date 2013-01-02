@@ -12,7 +12,7 @@ public class ApplicationManager {
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
 	private ContactHelper contactHelper;
-	private RandomDataHelper dataHelper;
+//	private RandomDataHelper dataHelper;
 
 	
 	public ApplicationManager(){
@@ -22,12 +22,12 @@ public class ApplicationManager {
 
 	}
 
-	public RandomDataHelper getDataHelper(){
-		if (dataHelper == null) {
-			dataHelper = new RandomDataHelper(this);			
-		}
-		return dataHelper;
-	}
+//	public RandomDataHelper getDataHelper(){
+//		if (dataHelper == null) {
+//			dataHelper = new RandomDataHelper(this);			
+//		}
+//		return dataHelper;
+//	}
 	
 	public NavigationHelper getNavigationHelper(){
 		if (navigationHelper == null) {
