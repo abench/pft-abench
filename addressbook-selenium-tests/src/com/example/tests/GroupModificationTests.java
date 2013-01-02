@@ -24,15 +24,11 @@ public class GroupModificationTests extends TestBase{
 		int index = rnd.nextInt(oldList.size()-1);
 
 		
-		app.getGroupHelper().initGroupModification(index);
-		
-//		GroupData group = new GroupData();
-//		group.groupName = app.getDataHelper().getRandomCategory();
-		
-		app.getGroupHelper().fillGroupForm(group);
-		app.getGroupHelper().submitGroupModification();
-			
-		app.getNavigationHelper().returnToGroupPage();
+		app.getGroupHelper()
+			.initGroupModification(index)
+			.fillGroupForm(group)
+			.submitGroupModification()
+			.returnToGroupPage();
 		
 		// save new state
 		List<GroupData> newList = app.getGroupHelper().getGroups();

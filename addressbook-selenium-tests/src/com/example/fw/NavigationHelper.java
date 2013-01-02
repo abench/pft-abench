@@ -17,7 +17,7 @@ public class NavigationHelper extends HelperBase{
 	private static final String alctrMainPage 	= "/addressbookv4.1.4/";
 	private static final String llctrGroupsPage = "groups";
 	private static final String llctrMainPage 	= "home page";
-	private static final String llctrGroupPage2 = "group page";
+	
 	
 
 	public NavigationHelper(ApplicationManager manager) {
@@ -38,9 +38,6 @@ public class NavigationHelper extends HelperBase{
 	}
 	
 	
-	public void returnToGroupPage() {
-		click(By.linkText(llctrGroupPage2));		
-	}
 
 	
 }

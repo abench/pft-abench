@@ -30,57 +30,68 @@ public class GroupHelper extends HelperBase{
 	private static final String nlctrEditBtn 			= "edit";
 	private static final String nlctrUpdateBtn 			= "update";
 	private static final String nlctrGroupCheckbox		= "selected[]";
+	private static final String llctrGroupPage2 = "group page";
 	
 	public GroupHelper(ApplicationManager manager) {
 		super(manager);		
 	}
 
-	public void submitGroupPage() {
-		click(By.name(nlctrSubmit));		
+	public GroupHelper submitGroupPage() {
+		click(By.name(nlctrSubmit));
+		return this;
 	}
 	
 
-	public void fillGroupForm(GroupData group) {		
+	public GroupHelper fillGroupForm(GroupData group) {		
 		type(By.name(nlctrGroupName), group.getGroupName());
 		type(By.name(nlctrGroupHeader),group.getHeader());
 		type(By.name(nlctrGroupFooter),group.getFooter());
+		return this;
 	}
 	
 	
-	public void initGroupCreation() {
+	public GroupHelper initGroupCreation() {
 		click(By.name(nlctrNewButton));
+		return this;
 	}
 	 
 
-	public void deleteGroup(int index) {
+	public GroupHelper deleteGroup(int index) {
 		selectGroupByIndex(index);
 		click(By.name(nlctrDeleteButton));
+		return this;
 		
 	}
 	
 	// index starts from 0
-	public void selectGroupByIndex(int index) {
+	public GroupHelper selectGroupByIndex(int index) {
 		click(By.xpath(xlctrGroupSelectorLft +index+1+xlctrGroupSelectorRht));
+		return this;
 	}
 	
 
-	public void initGroupModification(int index) {
+	public GroupHelper initGroupModification(int index) {
 		selectGroupByIndex(index);
-		click(By.name(nlctrEditBtn));		
+		click(By.name(nlctrEditBtn));
+		return this;
 	}
 
-	public void submitGroupModification() {
-		click(By.name(nlctrUpdateBtn));	
+	public GroupHelper submitGroupModification() {
+		click(By.name(nlctrUpdateBtn));
+		return this;
 	}
 
+	public void returnToGroupPage() {
+		click(By.linkText(llctrGroupPage2));		
+	}
+	
 	public List<GroupData> getGroups() {
 		List<GroupData> groups = new ArrayList<GroupData>();
 		List<WebElement> checkboxes = driver.findElements(By.name(nlctrGroupCheckbox));
 		for (WebElement checkbox : checkboxes) {			
 			String atr = checkbox.getAttribute("title");
 			String title = atr.substring("Select (".length(), atr.length()-")".length());
-			GroupData group = new GroupData();
-			groups.add(group.withGroupName(title));
+			groups.add(new GroupData().withGroupName(title));
 		}
 		
 		return groups;

@@ -25,8 +25,9 @@ public class GroupRemovalTests extends TestBase{
 		Random rnd = new Random();
 		int index = rnd.nextInt(oldList.size()-1);
 		
-		app.getGroupHelper().deleteGroup(index);
-		app.getNavigationHelper().returnToGroupPage();
+		app.getGroupHelper()
+			.deleteGroup(index)
+			.returnToGroupPage();
 		
 		// save new state
 		List<GroupData> newList = app.getGroupHelper().getGroups();
