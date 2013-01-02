@@ -12,6 +12,8 @@ public class ApplicationManager {
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
 	private ContactHelper contactHelper;
+	private static final String alctrMainPage 	= "/addressbookv4.1.4/";
+	
 //	private RandomDataHelper dataHelper;
 
 	
@@ -19,6 +21,8 @@ public class ApplicationManager {
 		driver = new FirefoxDriver();
 		baseUrl = "http://localhost/";
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.get(baseUrl + alctrMainPage);
+		
 
 	}
 
@@ -29,7 +33,7 @@ public class ApplicationManager {
 //		return dataHelper;
 //	}
 	
-	public NavigationHelper getNavigationHelper(){
+	public NavigationHelper navigateTo(){
 		if (navigationHelper == null) {
 			navigationHelper = new NavigationHelper(this);			
 		}

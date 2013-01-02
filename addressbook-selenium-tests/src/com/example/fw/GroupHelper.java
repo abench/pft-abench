@@ -51,17 +51,12 @@ public class GroupHelper extends HelperBase{
 	
 	
 	public GroupHelper initGroupCreation() {
+		manager.navigateTo().groupPage();
 		click(By.name(nlctrNewButton));
 		return this;
 	}
 	 
 
-	public GroupHelper deleteGroup(int index) {
-		selectGroupByIndex(index);
-		click(By.name(nlctrDeleteButton));
-		return this;
-		
-	}
 	
 	// index starts from 0
 	public GroupHelper selectGroupByIndex(int index) {
@@ -71,6 +66,7 @@ public class GroupHelper extends HelperBase{
 	
 
 	public GroupHelper initGroupModification(int index) {
+		manager.navigateTo().groupPage();
 		selectGroupByIndex(index);
 		click(By.name(nlctrEditBtn));
 		return this;
@@ -85,8 +81,12 @@ public class GroupHelper extends HelperBase{
 		click(By.linkText(llctrGroupPage2));		
 	}
 	
+	//-----------------------------------------------------------------------------------------
+	
 	public List<GroupData> getGroups() {
+		
 		List<GroupData> groups = new ArrayList<GroupData>();
+		manager.navigateTo().groupPage();
 		List<WebElement> checkboxes = driver.findElements(By.name(nlctrGroupCheckbox));
 		for (WebElement checkbox : checkboxes) {			
 			String atr = checkbox.getAttribute("title");
@@ -95,6 +95,37 @@ public class GroupHelper extends HelperBase{
 		}
 		
 		return groups;
+	}
+
+	public GroupHelper createGroup(GroupData group) {
+		manager.navigateTo().groupPage();
+		initGroupCreation();
+		fillGroupForm(group);
+		submitGroupPage();		
+		returnToGroupPage();
+		return this;
+
+	}
+
+	public GroupHelper  modifyGroup(int index, GroupData group) {
+		initGroupModification(index);
+		fillGroupForm(group);
+		submitGroupModification();
+		returnToGroupPage();
+		return this;
+	
+		
+	}
+	public GroupHelper deleteGroup(int index) {
+		selectGroupByIndex(index);
+		submitDeletion();
+		returnToGroupPage();
+		return this;
+		
+	}
+
+	private void submitDeletion() {
+		click(By.name(nlctrDeleteButton));
 	}
 	
 	

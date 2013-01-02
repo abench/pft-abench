@@ -24,14 +24,36 @@ public class NavigationHelper extends HelperBase{
 		super(manager);		
 	}
 
-	public void openMainPage() {
-		driver.get(manager.baseUrl + alctrMainPage);
+	public void mainPage() {
+		if (!onMainPage()){
+			
+			click(By.linkText("home"));
+		}
+		
 	}
 	
 	
-	public void gotoGroupPage() {		
-		driver.findElement(By.linkText(llctrGroupsPage)).click();
+	private boolean onMainPage() {		
+		return driver.findElements(By.id("maintable")).size()>0;
+	}
+
+	public void groupPage() {	
+		if (!onGroupPage()){
+			driver.findElement(By.linkText(llctrGroupsPage)).click();			
+		}
+		
 	}	
+
+	private boolean onGroupPage() {
+		if (driver.getCurrentUrl().contains("/group.php")
+				&& driver.findElements(By.name("new")).size()>0){
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
 
 	public void returnMainPage() {
 		driver.findElement(By.linkText(llctrMainPage)).click();

@@ -14,6 +14,8 @@ public abstract class HelperBase {
 	public HelperBase(ApplicationManager manager){
 		this.manager = manager;
 		this.driver = manager.driver;
+		
+		
 	}
 
 

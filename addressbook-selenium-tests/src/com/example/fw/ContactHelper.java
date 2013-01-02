@@ -43,6 +43,8 @@ public class ContactHelper extends HelperBase{
 	private static final String nctrlContactCheckbox= "selected[]";
 	private static final String llctrMainPage 		= "home page";
 	private static final String alctrMainPage 		= "/addressbookv4.1.4/";	
+	public static boolean MODIFICATION = false;
+	public static boolean CREATION = true;
 	
 	public ContactHelper(ApplicationManager manager) {
 		super(manager);
@@ -54,7 +56,7 @@ public class ContactHelper extends HelperBase{
 		return this;
 	}
 
-	public ContactHelper fillContactsForm(ContactData contact) {
+	public ContactHelper fillContactsForm(ContactData contact, boolean formType ) {
 		type(By.name(nlctrFirstNameInput),contact.getFirstname());
 		type(By.name(nlctrLastNameInput),contact.getLastname());
 		type(By.name(nlctrAddressInput),contact.getAddress());
@@ -65,6 +67,15 @@ public class ContactHelper extends HelperBase{
 		type(By.name(nlctrEmail2Input),contact.getEmail2());
 		selectByText(By.name(nlctrBdayInput), contact.getBirthDay());
 		selectByText(By.name(nlctrBmonthInput),contact.getBirthMonth());
+		if (formType == CREATION){
+			
+		}
+		else {
+			if (driver.findElements(By.name("new_group")).size()!=0){
+				throw new Error ("Group selector exist in contact modification form");
+			}
+		}
+			
 		type(By.name(nlctrByearInput),contact.getBirthYear());
 		type(By.name(nlctrAddress2Input),contact.getAddress2());
 		type(By.name(nlctrHome2Input),contact.getHome2());
