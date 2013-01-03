@@ -81,6 +81,11 @@ public class GroupHelper extends HelperBase{
 		click(By.linkText(llctrGroupPage2));		
 	}
 	
+	private void submitDeletion() {
+		click(By.name(nlctrDeleteButton));
+	}
+	
+	
 	//-----------------------------------------------------------------------------------------
 	
 	public List<GroupData> getGroups() {
@@ -124,9 +129,6 @@ public class GroupHelper extends HelperBase{
 		
 	}
 
-	private void submitDeletion() {
-		click(By.name(nlctrDeleteButton));
-	}
 	
 	
 }

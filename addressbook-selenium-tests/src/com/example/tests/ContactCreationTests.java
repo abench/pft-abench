@@ -2,26 +2,19 @@ package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
 
-
 import java.util.Collections;
 import java.util.List;
+
 import org.testng.annotations.Test;
-import static com.example.fw.ContactHelper.CREATION;
 
 public class ContactCreationTests extends TestBase {
 
 	@Test(dataProvider="randomValidContactGenerator")
 	public void testCreateContact(ContactData contact) throws Exception {
-		app.navigateTo().mainPage();
+		
 		List<ContactData> oldList = app.getContactHelper().getContacts();
 		
-		app.getContactHelper()
-			.openContactPage()
-			.gotoContactsPage()		
-			.fillContactsForm(contact,CREATION)
-			.submitContactsForm()			
-			.returnMainPage();
-		
+		app.getContactHelper().createContact(contact);
 		// store state after test
 		List<ContactData> newList = app.getContactHelper().getContacts();
 		//Compare states

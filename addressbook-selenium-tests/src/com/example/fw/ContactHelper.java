@@ -87,7 +87,7 @@ public class ContactHelper extends HelperBase{
 		return this;
 	}
 
-	public ContactHelper gotoContactsPage() {
+	public ContactHelper initContactCreation() {
 		click(By.linkText(llctrNewContactsPage));
 		return this;
 	}
@@ -102,10 +102,9 @@ public class ContactHelper extends HelperBase{
 
 
 
-	public ContactHelper deleteContact(int index) {
-		initContactModificationByIndex(index);		
+	
+	private void submitDeletion() {
 		click(By.xpath(xlctrDeleteButton));
-		return this;
 	}
 	
 	//index start from 0 
@@ -124,9 +123,13 @@ public class ContactHelper extends HelperBase{
 		click(By.xpath(xlctrUpdateButton));
 		return this;
 	}
+
+//------------------------------------------------------------------------
 	
 	public List<ContactData> getContacts(){
+		
 		List<ContactData> contacts = new ArrayList<ContactData>();
+		manager.navigateTo().mainPage();
 		List<WebElement> checkboxes= driver.findElements(By.name(nctrlContactCheckbox));
 		for (WebElement checkbox:checkboxes){			
 			String title = checkbox.getAttribute("title");
@@ -136,4 +139,29 @@ public class ContactHelper extends HelperBase{
 		
 		return contacts;
 	}
+
+	
+	public ContactHelper createContact(ContactData contact) {		
+		initContactCreation();		
+		fillContactsForm(contact,CREATION);
+		submitContactsForm();			
+		returnMainPage();
+		return this;
+	}
+
+	public ContactHelper modifyContact(ContactData contact, int index) {
+		initContactModificationByIndex(index);
+		fillContactsForm(contact, MODIFICATION);
+		updateContactsForm();
+		openMainPage();
+		return this;
+	}
+	
+	public ContactHelper deleteContact(int index) {
+		initContactModificationByIndex(index);		
+		submitDeletion();
+		returnMainPage();
+		return this;
+	}
+
 }

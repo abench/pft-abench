@@ -13,10 +13,13 @@ public class NavigationHelper extends HelperBase{
 	// x - By.xpath                                                                    Rht - right part of locator
 	// l - By.linkText
 	// a - full or part of web address
+	// i - By.id
 
-	private static final String alctrMainPage 	= "/addressbookv4.1.4/";
+//	private static final String alctrMainPage 	= "/addressbookv4.1.4/";
 	private static final String llctrGroupsPage = "groups";
 	private static final String llctrMainPage 	= "home page";
+	private static final String ilctrMainPage	= "maintable";
+	private static final String llctrStartPage	= "home";
 	
 	
 
@@ -25,16 +28,15 @@ public class NavigationHelper extends HelperBase{
 	}
 
 	public void mainPage() {
-		if (!onMainPage()){
-			
-			click(By.linkText("home"));
+		if (!onMainPage()){			
+			click(By.linkText(llctrStartPage));
 		}
 		
 	}
 	
 	
 	private boolean onMainPage() {		
-		return driver.findElements(By.id("maintable")).size()>0;
+		return driver.findElements(By.id(ilctrMainPage)).size()>0;
 	}
 
 	public void groupPage() {	
