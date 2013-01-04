@@ -1,8 +1,10 @@
 package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
-
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
 import java.util.Random;
+
 
 import org.testng.annotations.Test;
 
@@ -30,9 +32,7 @@ public class ContactRemovalTests extends TestBase {
 		//  by list length
 		assertEquals(oldList.size(),newList.size()+1);
 		//  by content
-		oldList.remove(index);				
-		assertEquals(oldList, newList);
-		
+		assertThat(newList, equalTo(oldList.without(index)));
 	}
 
 }
