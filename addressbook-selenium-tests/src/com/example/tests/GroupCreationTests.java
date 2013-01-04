@@ -1,6 +1,8 @@
 package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.Test;
 
@@ -30,9 +32,6 @@ public class GroupCreationTests extends TestBase {
 		assertEquals(oldList.size()+1, newList.size());
 		
 		// by content
-		oldList.add(group);				
-		assertEquals(oldList, newList);
-		
-		
+		assertThat(newList, equalTo(oldList.withAdded(group)));		
 	}
 } 

@@ -1,6 +1,8 @@
 package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.Test;
 
@@ -20,9 +22,7 @@ public class ContactCreationTests extends TestBase {
 		// by list length
 		assertEquals(oldList.size()+1,newList.size());
 		// by content
-		oldList.add(contact);				
-		assertEquals(oldList, newList);
-
+		assertThat(newList, equalTo(oldList.withAdded(contact)));
 	}
 
 

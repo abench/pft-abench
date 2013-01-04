@@ -1,6 +1,9 @@
 package com.example.tests;
 
 import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 
 import java.util.Random;
 
@@ -26,10 +29,7 @@ public class GroupModificationTests extends TestBase{
 		// compare quantity
 		assertEquals(oldList.size(),newList.size());
 		// Compare content
-		
-		oldList.remove(index);
-		oldList.add(group);		
-		assertEquals(oldList, newList);		
+		assertThat(newList, equalTo(oldList.without(index).withAdded(group)));
 	}
 
 }

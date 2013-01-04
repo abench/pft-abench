@@ -1,6 +1,8 @@
 package com.example.tests;
 
 import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import java.util.Random;
 
@@ -28,12 +30,7 @@ public class ContactModificationTests extends TestBase {
 		// by length
 		assertEquals(oldList.size(),newList.size());
 		// by content
-		
-		oldList.remove(index);
-		oldList.add(contact);		
-		assertEquals(oldList, newList);		
-
-		
+		assertThat(newList, equalTo(oldList.without(index).withAdded(contact)));
 	}
 	
 //	@Test
