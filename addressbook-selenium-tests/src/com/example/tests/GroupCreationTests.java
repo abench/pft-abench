@@ -1,9 +1,12 @@
 package com.example.tests;
 
-import java.util.Collections;
-import java.util.List;
 import static org.testng.Assert.assertEquals;
+
+import java.util.Collections;
+
 import org.testng.annotations.Test;
+
+import com.example.utils.SortedListOf;
 
 
 
@@ -13,13 +16,13 @@ public class GroupCreationTests extends TestBase {
 	@Test(dataProvider="randomValidGroupGenerator")
 	public void testGroupCreationWithValidData(GroupData group) throws Exception {
 		// save old state
-		List<GroupData> oldList = app.getGroupHelper().getGroups();
+		SortedListOf<GroupData> oldList = app.getGroupHelper().getGroups();
 		
 		// execute actions
 		app.getGroupHelper().createGroup(group);
 		
 		// save new state
-		List<GroupData> newList = app.getGroupHelper().getGroups();
+		SortedListOf<GroupData> newList = app.getGroupHelper().getGroups();
 		
 		//
 		// compare old and new state

@@ -3,10 +3,11 @@ package com.example.tests;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import org.testng.annotations.Test;
+
+import com.example.utils.SortedListOf;
 
 public class GroupRemovalTests extends TestBase{
 	
@@ -14,7 +15,7 @@ public class GroupRemovalTests extends TestBase{
 	@Test
 	public void deleteSomeGroup(){
 		// save old state
-		List<GroupData> oldList = app.getGroupHelper().getGroups();
+		SortedListOf<GroupData> oldList = app.getGroupHelper().getGroups();
 
 		// execute test
 		Random rnd = new Random();
@@ -24,7 +25,7 @@ public class GroupRemovalTests extends TestBase{
 			
 		
 		// save new state
-		List<GroupData> newList = app.getGroupHelper().getGroups();
+		SortedListOf<GroupData> newList = app.getGroupHelper().getGroups();
 		
 		// compare quantity
 		assertEquals(oldList.size()+1,newList.size());
