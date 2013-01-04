@@ -2,7 +2,6 @@ package com.example.tests;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-import java.util.Collections;
 import java.util.Random;
 
 import org.testng.annotations.Test;
@@ -31,9 +30,7 @@ public class ContactModificationTests extends TestBase {
 		// by content
 		
 		oldList.remove(index);
-		oldList.add(contact);
-		Collections.sort(oldList);
-		Collections.sort(newList);
+		oldList.add(contact);		
 		assertEquals(oldList, newList);		
 
 		

@@ -2,8 +2,6 @@ package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.Collections;
-
 import org.testng.annotations.Test;
 
 import com.example.utils.SortedListOf;
@@ -32,9 +30,7 @@ public class GroupCreationTests extends TestBase {
 		assertEquals(oldList.size()+1, newList.size());
 		
 		// by content
-		oldList.add(group);
-		Collections.sort(oldList);
-		Collections.sort(newList);		
+		oldList.add(group);				
 		assertEquals(oldList, newList);
 		
 		

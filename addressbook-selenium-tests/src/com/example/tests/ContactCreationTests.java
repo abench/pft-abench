@@ -2,8 +2,6 @@ package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.Collections;
-
 import org.testng.annotations.Test;
 
 import com.example.utils.SortedListOf;
@@ -22,9 +20,7 @@ public class ContactCreationTests extends TestBase {
 		// by list length
 		assertEquals(oldList.size()+1,newList.size());
 		// by content
-		oldList.add(contact);
-		Collections.sort(oldList);
-		Collections.sort(newList);		
+		oldList.add(contact);				
 		assertEquals(oldList, newList);
 
 	}

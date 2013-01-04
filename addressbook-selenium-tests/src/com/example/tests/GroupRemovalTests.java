@@ -2,7 +2,6 @@ package com.example.tests;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-import java.util.Collections;
 import java.util.Random;
 
 import org.testng.annotations.Test;
@@ -32,8 +31,6 @@ public class GroupRemovalTests extends TestBase{
 		
 		// Compare content
 		oldList.remove(index);		
-		Collections.sort(oldList);
-		Collections.sort(newList);
 		assertEquals(oldList, newList);	
 
 	}
