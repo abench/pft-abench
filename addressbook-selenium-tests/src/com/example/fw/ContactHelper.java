@@ -53,6 +53,7 @@ public class ContactHelper extends HelperBase{
 
 	public ContactHelper submitContactsForm() {
 		click(By.name(nlctrSubmitButton));
+		cachedContacts = null;
 		return this;
 	}
 
@@ -105,6 +106,7 @@ public class ContactHelper extends HelperBase{
 	
 	private void submitDeletion() {
 		click(By.xpath(xlctrDeleteButton));
+		cachedContacts = null;
 	}
 	
 	//index start from 0 
@@ -121,31 +123,42 @@ public class ContactHelper extends HelperBase{
 
 	public ContactHelper updateContactsForm() {		
 		click(By.xpath(xlctrUpdateButton));
+		cachedContacts = null;
 		return this;
 	}
 
 //------------------------------------------------------------------------
 	
+	private List<ContactData> cachedContacts;
+	
 	public List<ContactData> getContacts(){
 		
-		List<ContactData> contacts = new ArrayList<ContactData>();
+		if (cachedContacts==null){
+			rebuildCache();
+		}
+		return cachedContacts;
+		
+	}
+
+	
+	private void rebuildCache() {
+		cachedContacts = new ArrayList<ContactData>();
 		manager.navigateTo().mainPage();
 		List<WebElement> checkboxes= driver.findElements(By.name(nctrlContactCheckbox));
 		for (WebElement checkbox:checkboxes){			
 			String title = checkbox.getAttribute("title");
 			String[] str= title.substring("Select (".length(), title.length()-")".length()).split("\\s+");
-			contacts.add(new ContactData().withLastname(str[1]));
+			cachedContacts.add(new ContactData().withLastname(str[1]));
 		}
-		
-		return contacts;
+			
 	}
 
-	
 	public ContactHelper createContact(ContactData contact) {		
 		initContactCreation();		
 		fillContactsForm(contact,CREATION);
 		submitContactsForm();			
 		returnMainPage();
+		rebuildCache();
 		return this;
 	}
 
@@ -154,6 +167,7 @@ public class ContactHelper extends HelperBase{
 		fillContactsForm(contact, MODIFICATION);
 		updateContactsForm();
 		openMainPage();
+		rebuildCache();
 		return this;
 	}
 	
@@ -161,6 +175,7 @@ public class ContactHelper extends HelperBase{
 		initContactModificationByIndex(index);		
 		submitDeletion();
 		returnMainPage();
+		rebuildCache();
 		return this;
 	}
 
