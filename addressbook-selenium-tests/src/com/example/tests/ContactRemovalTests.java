@@ -3,10 +3,11 @@ package com.example.tests;
 import static org.testng.Assert.assertEquals;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import org.testng.annotations.Test;
+
+import com.example.utils.SortedListOf;
 
 public class ContactRemovalTests extends TestBase {
 	
@@ -14,7 +15,7 @@ public class ContactRemovalTests extends TestBase {
 	public void deleteSomeContact(){
 		app.navigateTo().mainPage();
 		// store state before test
-		List<ContactData> oldList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();
 		// execute test steps
 		
 		Random rnd = new Random();
@@ -25,7 +26,7 @@ public class ContactRemovalTests extends TestBase {
 			
 		
 		// store state after test
-		List<ContactData> newList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> newList = app.getContactHelper().getContacts();
 		// Compare states
 		//  by list length
 		assertEquals(oldList.size(),newList.size()+1);

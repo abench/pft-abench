@@ -3,17 +3,18 @@ package com.example.tests;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import org.testng.annotations.Test;
+
+import com.example.utils.SortedListOf;
 
 public class ContactModificationTests extends TestBase {
 	
 	@Test(dataProvider="randomValidContactGenerator")
 	public void modifySomeContact(ContactData contact){
 		//store state before test
-		List<ContactData> oldList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();
 		
 		//execute test steps
 		
@@ -23,7 +24,7 @@ public class ContactModificationTests extends TestBase {
 		app.getContactHelper().modifyContact(contact,index);		
 		
 		//store state after test
-		List<ContactData> newList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> newList = app.getContactHelper().getContacts();
 		//Compare
 		// by length
 		assertEquals(oldList.size(),newList.size());
