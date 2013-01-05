@@ -29,19 +29,18 @@ public class TestBase {
 	
 	@DataProvider
 	public Iterator<Object[]> randomValidGroupGenerator(){
-		List<GroupData> groups = generateRandomGroups(5);
-		wrapListForDataProvider();
-		List<Object[]> list = generateRandomGroups(5);
-		for (int i=0; i<5; i++){
-			GroupData group = new GroupData()
-				.withGroupName(getRandomCategory())
-				.withHeader(getRandomString())
-				.withFooter(getRandomString());
-			list.add(new Object[]{group});			
-		}
-		return list.iterator();
+		return wrapListForDataProvider(generateRandomGroups(5)).iterator();
 	}
 
+
+	private List<Object[]> wrapListForDataProvider(List<GroupData> groups) {
+		List<Object[]> list = new ArrayList<Object[]>();
+		for (GroupData group:groups){
+			list.add(new Object[]{group});
+			
+		}
+		return list;
+	}
 
 	@DataProvider
 	public Iterator<Object[]> randomValidContactGenerator(){
