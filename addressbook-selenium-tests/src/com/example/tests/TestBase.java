@@ -1,8 +1,11 @@
 package com.example.tests;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -19,6 +22,8 @@ public class TestBase {
 
 	@BeforeTest
 	public void setUp() throws Exception {
+		Properties properties = new Properties();
+		properties.load(new FileReader(new File("application.properties")));
 		app = new ApplicationManager();
 	}
 
@@ -33,7 +38,7 @@ public class TestBase {
 	}
 
 
-	private List<Object[]> wrapListForDataProvider(List<GroupData> groups) {
+	public static List<Object[]> wrapListForDataProvider(List<GroupData> groups) {
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (GroupData group:groups){
 			list.add(new Object[]{group});
