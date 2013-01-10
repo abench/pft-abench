@@ -122,6 +122,11 @@ public class ContactData implements Comparable<ContactData>{
 		return this;
 	}
 
+	public ContactData withBirthYear(String year) {
+		this.birthYear = year;
+		return this;
+	}
+	
 	public ContactData withHome2(String home) {
 		this.home2 = home;
 		return this;
@@ -181,5 +186,9 @@ public class ContactData implements Comparable<ContactData>{
 	public String getHome2() {
 		return home2;
 	}
+
+
+
+	
 
 }
