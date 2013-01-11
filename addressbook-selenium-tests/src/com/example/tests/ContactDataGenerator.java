@@ -9,19 +9,23 @@ import static com.example.fw.RandomDataHelper.getRandomPhone;
 import static com.example.fw.RandomDataHelper.getRandomSecondName;
 import static com.example.fw.RandomDataHelper.getRandomNumericalString;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thoughtworks.xstream.XStream;
+
 public class ContactDataGenerator {
 
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws IOException {
 		if (args.length<3){
 			System.out.println("Please specify parameters:<amount of test data> <file> <format> ");
 			return;
@@ -51,21 +55,22 @@ public class ContactDataGenerator {
 	}
 
 	public static void saveContactsToXmlFile(List<ContactData> contacts, File file) throws IOException {
-		// TODO Auto-generated method stub
-		
-		
+		XStream xstream = new XStream();
+		xstream.alias("contact", ContactData.class);
+		String xml = xstream.toXML(contacts);
+		FileWriter writer = new FileWriter(file);
+		writer.write(xml);
+		writer.close();		
 	}
 	
-	public static List<ContactData> loadContactsFromXmlFile(File file) throws IOException {
-		List<ContactData> list = new ArrayList<ContactData>();
-		return list;
-		
+	public static List<ContactData> loadContactsFromXmlFile(File file) throws IOException {		
+		XStream xstream = new XStream();
+		xstream.alias("contact", ContactData.class);
+		return (List<ContactData>) xstream.fromXML(file);		
 	}
 
 	public static void saveContactsToCsvFile(List<ContactData> contacts, File file) throws IOException {
-		// TODO Auto-generated method stub
-		FileWriter writer = new FileWriter(file);
-		
+		FileWriter writer = new FileWriter(file);		
 		for (ContactData contact : contacts) {
 			writer.write(contact.getFirstname()+","+
 						contact.getLastname()+","+
@@ -78,20 +83,34 @@ public class ContactDataGenerator {
 					    contact.getBirthDay()+","+
 						contact.getBirthMonth()+","+
 					    contact.getBirthYear()+","+",!"+"\n");
-//			.withEmail(getRandomEmail(randomFirstname))
-//			.withEmail2(getRandomEmail(randomFirstname))
-//			.withBirthDay(getRandomDay())
-//			.withBirthMonth(getRandomMonth())
-//			.withAddress(getRandomAddress())
-//			.withHome2(getRandomAddress()));			
-
-		}
-		
+		}		
 		writer.close();
-
 	}
 	public static List<ContactData> loadContactsFromCsvFile(File file) throws IOException {
 		List<ContactData> list = new ArrayList<ContactData>();
+		FileReader reader = new FileReader(file);
+		BufferedReader bufferedReader = new BufferedReader(reader);
+		String line = bufferedReader.readLine();
+		while (line!=null) {
+			String[] part = line.split(",");
+			ContactData contact = new ContactData()
+				.withFirstname(part[0])		
+				.withLastname(part[0])		
+				.withAddress(part[0])		
+				.withPhoneHome(part[0])		
+				.withPhoneMobile(part[0])	
+				.withPhoneWork(part[0])		
+				.withEmail(part[0])			
+				.withEmail2(part[0])		
+				.withBirthDay(part[0])		
+				.withBirthMonth(part[0])	
+				.withBirthYear(part[0]);
+		    
+			list.add(contact);
+			line = bufferedReader.readLine();
+		}
+		
+		bufferedReader.close();
 		return list;
 	}
 
