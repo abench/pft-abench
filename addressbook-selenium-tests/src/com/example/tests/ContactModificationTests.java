@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import com.example.utils.SortedListOf;
 
-public class ContactModificationTests extends TestBase {
+public class ContactModificationTests extends TestBaseContact {
 	
 	@Test(dataProvider="randomValidContactGenerator")
 	public void modifySomeContact(ContactData contact){

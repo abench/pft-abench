@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import com.example.utils.SortedListOf;
 
-public class ContactCreationTests extends TestBase {
+public class ContactCreationTests extends TestBaseContact {
 
 	@Test(dataProvider="randomValidContactGenerator")
 	public void testCreateContact(ContactData contact) throws Exception {

@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import com.example.utils.SortedListOf;
 
-public class GroupModificationTests extends TestBase{
+public class GroupModificationTests extends TestBaseGroup{
 	
 	@Test(dataProvider="randomValidGroupGenerator")
 	public void modifySomeGroup(GroupData group){

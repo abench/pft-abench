@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import com.example.utils.SortedListOf;
 
-public class ContactRemovalTests extends TestBase {
+public class ContactRemovalTests extends TestBaseContact {
 	
 	@Test
 	public void deleteSomeContact(){

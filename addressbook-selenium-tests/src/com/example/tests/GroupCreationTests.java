@@ -16,10 +16,10 @@ import com.example.utils.SortedListOf;
 
 
 
-public class GroupCreationTests extends TestBase {
+public class GroupCreationTests extends TestBaseGroup {
 	
 	@DataProvider
-	public Iterator<Object[]> groupsFromFile() throws IOException{
+	public Iterator<Object[]> groupsFromCsvFile() throws IOException{
 		return wrapListForDataProvider(loadGroupsFromCsvFile(new File("groups.txt"))).iterator();
 	}
 

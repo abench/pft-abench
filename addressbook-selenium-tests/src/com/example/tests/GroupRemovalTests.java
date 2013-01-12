@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import com.example.utils.SortedListOf;
 
-public class GroupRemovalTests extends TestBase{
+public class GroupRemovalTests extends TestBaseGroup{
 	
 	
 	@Test
