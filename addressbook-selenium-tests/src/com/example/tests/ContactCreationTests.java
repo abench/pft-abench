@@ -10,7 +10,7 @@ import com.example.utils.SortedListOf;
 
 public class ContactCreationTests extends TestBaseContact {
 
-	@Test(dataProvider="randomValidContactGenerator")
+	@Test(dataProvider="contactsFromCsvFile")
 	public void testCreateContact(ContactData contact) throws Exception {
 		
 		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();

@@ -2,6 +2,7 @@ package com.example.tests;
 
 import static com.example.tests.GroupDataGenerator.generateRandomGroups;
 import static com.example.tests.GroupDataGenerator.loadGroupsFromCsvFile;
+import static com.example.tests.GroupDataGenerator.loadGroupsFromXmlFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +22,11 @@ public class TestBaseGroup extends TestBase {
 	@DataProvider
 	public Iterator<Object[]> groupsFromCsvFile() throws IOException {
 		return wrapListForDataProvider(loadGroupsFromCsvFile(new File("groups.txt"))).iterator();
+	}
+
+	@DataProvider
+	public Iterator<Object[]> groupsFromXmlFile() throws IOException {
+		return wrapListForDataProvider(loadGroupsFromXmlFile(new File("groups.xml"))).iterator();
 	}
 
 	public static List<Object[]> wrapListForDataProvider(List<GroupData> groups) {

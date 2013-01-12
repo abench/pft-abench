@@ -78,7 +78,7 @@ public class RandomDataHelper{
 		
 	}
 	public static String getRandomAddress(){
-		return getRandomCity() + "," + getRandomStreet() + "," + getRandomNumericalString(3);
+		return getRandomCity() + " " + getRandomStreet() + " " + getRandomNumericalString(3);
 	}
 	public static String getRandomEmail(String userName){
 		String emailProvidersList[] = {"mail.ru","google.com","yandex.ru","mailinator.com","","anonymous.org"};
