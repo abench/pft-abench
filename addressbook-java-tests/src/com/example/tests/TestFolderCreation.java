@@ -1,8 +1,11 @@
 package com.example.tests;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.MatcherAssert.*;
+
+import com.example.fw.Folders;
 class TestFolderCreation extends TestBase {
 	
 	@Test

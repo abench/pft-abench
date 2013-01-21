@@ -26,7 +26,7 @@ public class ApplicationManager {
 	public JFrameOperator getApplication(){
 		if (mainFrame == null){
 			try {
-				new ClassReference("Addressbook.AddressBookFrame").startApplication();
+				new ClassReference("addressbook.AddressBookFrame").startApplication();
 				mainFrame = new JFrameOperator("jAddressBook");
 				
 			} catch (Exception e) {
