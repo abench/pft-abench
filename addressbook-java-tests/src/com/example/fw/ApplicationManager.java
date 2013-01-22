@@ -10,6 +10,7 @@ public class ApplicationManager {
 	private Properties properties;
 	private FolderHelper folderHelper;
 	private JFrameOperator mainFrame;
+	private MenuHelper menuHelper;
 	
 	
 	public ApplicationManager(Properties properties){
@@ -21,6 +22,8 @@ public class ApplicationManager {
 	
 	
 	public void stop() {
+		getApplication().requestClose();
+		
 	
 	}
 	public JFrameOperator getApplication(){
@@ -44,6 +47,15 @@ public class ApplicationManager {
 			folderHelper = new FolderHelper(this);
 		}
 		return folderHelper;
+	}
+
+
+
+	public MenuHelper getMenuHelper() {
+		if (menuHelper == null){
+			menuHelper = new MenuHelper(this);
+		}
+		return menuHelper;
 	}
 	
 }
