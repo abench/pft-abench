@@ -43,7 +43,7 @@ public class ApplicationManager {
 		if (folderHelper == null){
 			folderHelper = new FolderHelper(this);
 		}
-		return null;
+		return folderHelper;
 	}
 	
 }
