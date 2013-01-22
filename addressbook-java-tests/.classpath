@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hamcrest"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Xstream"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jemmy2"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/AddressBook"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/testng"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
