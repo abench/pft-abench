@@ -1,20 +1,17 @@
 package com.example.fw;
 
-import javax.swing.JMenuBar;
-
+import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 
-public class MenuHelper {
-
-	private ApplicationManager manager;
+public class MenuHelper extends HelpersBase{
 
 	public MenuHelper(ApplicationManager applicationManager) {
-		this.manager = applicationManager;
-		// TODO Auto-generated constructor stub
+		super(applicationManager);
 	}
 
 	public void pushCreateFolder() {
-		JMenuBarOperator menu = new JMenuBarOperator(manager.getApplication());
+		
+		JMenuBarOperator menu = new JMenuBarOperator(application);
 		menu.pushMenuNoBlock("File|New folder...");		
 		
 	}
