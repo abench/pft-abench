@@ -6,6 +6,7 @@ import java.util.Properties;
 public class ApplicationManager {
 	private Properties properties;
 //	private FolderHelper folderHelper;
+	private ContactHelper contactHelper;
 
 //	private MenuHelper menuHelper;
 	
@@ -22,6 +23,15 @@ public class ApplicationManager {
 //		getApplication().requestClose();
 		
 	
+	}
+
+
+
+	public ContactHelper getContactHelper() {
+		if (contactHelper == null){
+		contactHelper = new ContactHelper(this);
+	}
+	return contactHelper;
 	}
 
 
