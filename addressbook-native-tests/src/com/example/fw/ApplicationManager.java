@@ -11,6 +11,7 @@ public class ApplicationManager {
 	private ContactHelper contactHelper;
 	private ProcessHelper processHelper;
 	private AutoItHelper autoItHelper;
+	private static int delayTime = 5000;
 	
 
 //	private MenuHelper menuHelper;
@@ -27,9 +28,23 @@ public class ApplicationManager {
 			singleton =  new ApplicationManager();
 			singleton.setProperties(properties);
 			singleton.start();
+			
+			
+			// Delay to wait on application start
+			// Start is slow, because I am running it on virtual machine
+			
+			delay();
 		}
 		return singleton;
 		
+	}
+
+	public static void delay() {
+		try {			
+			Thread.sleep(delayTime);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void start() throws IOException {
@@ -41,7 +56,6 @@ public class ApplicationManager {
 //		getApplication().requestClose();
 		getProcessHelper().stopAppUnderTest();	
 	}
-
 
 
 	public ContactHelper getContactHelper() {

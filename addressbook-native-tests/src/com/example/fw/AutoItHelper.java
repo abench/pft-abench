@@ -42,7 +42,8 @@ public class AutoItHelper extends HelpersBase {
     }
 
     public AutoItHelper focus(String controlID) {
-        aux.controlFocus(winTitle, winText, controlID);
+        //aux.controlFocus(winTitle, winText, controlID);
+        aux.controlClick(winTitle, winText, controlID);
         System.out.println("Control focused: " + controlID);
         return this;
     }
@@ -53,8 +54,9 @@ public class AutoItHelper extends HelpersBase {
     }
     
     public AutoItHelper send(String controlID, String text) {
-        focus(controlID);
-        aux.send(text, false);
+    	aux.controlSend(winTitle, winText, controlID, text);
+        //focus(controlID);
+        //aux.send(text, false);
         return this;
     }
 
