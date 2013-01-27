@@ -19,7 +19,7 @@ public class TestBase {
 		Properties properties = new Properties();
 		String configFile = System.getProperty("configFile","application.properties");
 		properties.load(new FileReader(new File(configFile)));
-		app = new ApplicationManager(properties);
+		app = ApplicationManager.getInstance(properties);
 	}
 
 	@AfterTest

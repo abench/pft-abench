@@ -1,4 +1,4 @@
-package com.example.tests;
+package com.example.fw;
 
 public class Contact {
 
@@ -23,7 +23,7 @@ public class Contact {
 	public Contact setLastName(String lastName) {
 		
 		this.lastName = lastName;
-		return null;
+		return this;
 	}
 
 }

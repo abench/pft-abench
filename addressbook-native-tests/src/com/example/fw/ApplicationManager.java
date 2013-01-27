@@ -1,28 +1,45 @@
 package com.example.fw;
 
+import java.io.IOException;
 import java.util.Properties;
 
 
 public class ApplicationManager {
+	private static ApplicationManager singleton;
 	private Properties properties;
 //	private FolderHelper folderHelper;
 	private ContactHelper contactHelper;
+	private ProcessHelper processHelper;
+	private AutoItHelper autoItHelper;
+	
 
 //	private MenuHelper menuHelper;
 	
 	
-	public ApplicationManager(Properties properties){
-		
-		this.properties = properties;
+//	public ApplicationManager(Properties properties){
+//		
+//		this.properties = properties;
+//
+//	}
 
+	public static ApplicationManager getInstance(Properties properties) throws IOException{
+		if (singleton==null){
+			singleton =  new ApplicationManager();
+			singleton.setProperties(properties);
+			singleton.start();
+		}
+		return singleton;
+		
+	}
+	
+	private void start() throws IOException {
+		getProcessHelper().startAppUnderTest();
+		
 	}
 
-	
-	
-	public void stop() {
+	public void stop() throws IOException {
 //		getApplication().requestClose();
-		
-	
+		getProcessHelper().stopAppUnderTest();	
 	}
 
 
@@ -32,6 +49,28 @@ public class ApplicationManager {
 		contactHelper = new ContactHelper(this);
 	}
 	return contactHelper;
+	}
+
+	public ProcessHelper getProcessHelper() {
+		if (processHelper == null){
+			processHelper = new ProcessHelper(this);
+	}
+	return processHelper;
+	}
+
+	public AutoItHelper getAutoItHelper() {
+		if (autoItHelper == null){
+			autoItHelper = new AutoItHelper(this);
+	}
+	return autoItHelper;
+	}
+
+	
+	public void setProperties(Properties props){
+		this.properties = props;
+	}
+	public String getProperty(String property) {
+		return properties.getProperty(property);
 	}
 
 
