@@ -54,6 +54,13 @@ public class ContactHelper extends HelpersBase {
 //			e.printStackTrace();
 //		}
 	}
+
+	public Contact getFirstContact() {
+		manager.getAutoItHelper().focus("TListView1")
+			.send(" ");
+		return null;
+		
+	}
 	
 
 }

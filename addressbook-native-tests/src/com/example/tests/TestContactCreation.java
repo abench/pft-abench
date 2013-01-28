@@ -1,5 +1,6 @@
 package com.example.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.example.fw.Contact;
@@ -9,13 +10,10 @@ public class TestContactCreation extends TestBase {
 	public void shouldCreateContactWithValidData(){
 		Contact contact = new Contact().setFirstName("Vasja").setLastName("Pupkin");
 		app.getContactHelper().createContact(contact);
-		app.delay();
-//		try {
-//			Thread.sleep(20000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+//		app.delay();
+		
+		Contact createdContact = app.getContactHelper().getFirstContact();
+		//Assert.assertEquals(contact, createdContact);
 		
 		
 		

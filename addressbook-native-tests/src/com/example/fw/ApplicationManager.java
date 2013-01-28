@@ -89,6 +89,7 @@ public class ApplicationManager {
 
 
 
+
 //	public FolderHelper getFolderHelper() {
 //		if (folderHelper == null){
 //			folderHelper = new FolderHelper(this);
