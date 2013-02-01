@@ -1,6 +1,7 @@
 package com.example.tests;
 
 public class GroupData implements Comparable<GroupData>{
+	private String id;
 	private String groupName;
 	private String header;
 	private String footer;
@@ -56,6 +57,12 @@ public class GroupData implements Comparable<GroupData>{
 		this.header=header;
 		return this;
 	}
+	
+	public GroupData withId(String id) {
+		this.id=id;
+		return this;
+	}
+
 
 	public GroupData withFooter(String footer) {
 		this.footer = footer;

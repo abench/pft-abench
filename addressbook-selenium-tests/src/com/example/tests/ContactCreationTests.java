@@ -7,6 +7,10 @@ import static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 
 import com.example.utils.SortedListOf;
+//import com.google.common.collect.ForwardingCollection;
+
+
+
 
 public class ContactCreationTests extends TestBaseContact {
 
@@ -20,9 +24,10 @@ public class ContactCreationTests extends TestBaseContact {
 		SortedListOf<ContactData> newList = app.getContactHelper().getContacts();
 		//Compare states
 		// by list length
-		assertEquals(oldList.size()+1,newList.size());
+		assertEquals(oldList.size()+1, newList.size());
 		// by content
 		assertThat(newList, equalTo(oldList.withAdded(contact)));
+		
 	}
 
 

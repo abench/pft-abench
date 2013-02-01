@@ -95,16 +95,16 @@ public class ContactDataGenerator {
 			String[] part = line.split(",");
 			ContactData contact = new ContactData()
 				.withFirstname(part[0])		
-				.withLastname(part[0])		
-				.withAddress(part[0])		
-				.withPhoneHome(part[0])		
-				.withPhoneMobile(part[0])	
-				.withPhoneWork(part[0])		
-				.withEmail(part[0])			
-				.withEmail2(part[0])		
-				.withBirthDay(part[0])		
-				.withBirthMonth(part[0])	
-				.withBirthYear(part[0]);
+				.withLastname(part[1])		
+				.withAddress(part[2])		
+				.withPhoneHome(part[3])		
+				.withPhoneMobile(part[4])	
+				.withPhoneWork(part[5])		
+				.withEmail(part[6])			
+				.withEmail2(part[7])		
+				.withBirthDay(part[8])		
+				.withBirthMonth(part[9])	
+				.withBirthYear(part[10]);
 		    
 			list.add(contact);
 			line = bufferedReader.readLine();

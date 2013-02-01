@@ -9,12 +9,12 @@ import org.openqa.selenium.support.ui.Select;
 
 public abstract class WebDriverHelperBase extends HelperBase{
 	//protected ApplicationManager manager;
-	protected WebDriver driver;
+	private WebDriver driver;
 	
 	public WebDriverHelperBase(ApplicationManager manager){
 		super(manager);
 		//this.manager = manager;
-		this.driver = manager.driver;
+		this.driver = manager.getDriver();
 		
 		
 	}
@@ -50,7 +50,7 @@ public abstract class WebDriverHelperBase extends HelperBase{
 	
 	public boolean isElementPresent(By by) {
 		try {
-			manager.driver.findElement(by);
+			manager.getDriver().findElement(by);
 			return true;
 		} catch (NoSuchElementException e) {
 			return false;

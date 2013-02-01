@@ -9,7 +9,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 
 public class ApplicationManager {
-	public WebDriver driver;
+	private WebDriver driver;
 	public String baseUrl;
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
@@ -23,20 +23,6 @@ public class ApplicationManager {
 	public ApplicationManager(Properties properties){
 		
 		this.properties = properties;
-		String browser = properties.getProperty("browser");
-		if (browser.equals("firefox")){
-			driver = new FirefoxDriver();
-		} else if (browser.equals("ie")){
-			driver = new InternetExplorerDriver();			
-		} else {
-			throw new Error("Unsupported browser" + browser);
-		}
-		
-		baseUrl = properties.getProperty("baseURL");//"http://localhost/";
-		alctrMainPage = properties.getProperty("firstPage");
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get(baseUrl + alctrMainPage);
-		
 
 	}
 
@@ -67,6 +53,26 @@ public class ApplicationManager {
 		}
 		return contactHelper;
 	}	
+	public WebDriver getDriver(){
+		String browser = properties.getProperty("browser");
+		if (driver == null){
+		if (browser.equals("firefox")){
+			driver = new FirefoxDriver();
+		} else if (browser.equals("ie")){
+			driver = new InternetExplorerDriver();			
+		} else {
+			throw new Error("Unsupported browser" + browser);
+		}
+		
+		baseUrl = properties.getProperty("baseURL");//"http://localhost/";
+		alctrMainPage = properties.getProperty("firstPage");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.get(baseUrl + alctrMainPage);
+		}
+		return driver;
+		
+	
+	}
 	
 	public void stop() {
 		driver.quit();		
