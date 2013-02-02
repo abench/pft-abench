@@ -72,7 +72,7 @@ public class ContactHelper extends WebDriverHelperBase{
 			
 		}
 		else {
-			if (driver.findElements(By.name("new_group")).size()!=0){
+			if (manager.getDriver().findElements(By.name("new_group")).size()!=0){
 				throw new Error ("Group selector exist in contact modification form");
 			}
 		}
@@ -84,7 +84,7 @@ public class ContactHelper extends WebDriverHelperBase{
 	}
 
 	public ContactHelper openContactPage() {
-		driver.get(manager.baseUrl + alctrContactsPage);
+		manager.getDriver().get(manager.baseUrl + alctrContactsPage);
 		return this;
 	}
 
@@ -94,11 +94,11 @@ public class ContactHelper extends WebDriverHelperBase{
 	}
 	
 	public void returnMainPage() {
-		driver.findElement(By.linkText(llctrMainPage)).click();
+		manager.getDriver().findElement(By.linkText(llctrMainPage)).click();
 	}
 	
 	public void openMainPage() {
-		driver.get(manager.baseUrl + alctrMainPage);
+		manager.getDriver().get(manager.baseUrl + alctrMainPage);
 	}
 
 
@@ -144,7 +144,7 @@ public class ContactHelper extends WebDriverHelperBase{
 	private void rebuildCache() {
 		cachedContacts = new SortedListOf<ContactData>();
 		manager.navigateTo().mainPage();
-		List<WebElement> checkboxes= driver.findElements(By.name(nctrlContactCheckbox));
+		List<WebElement> checkboxes= manager.getDriver().findElements(By.name(nctrlContactCheckbox));
 		for (WebElement checkbox:checkboxes){			
 			String title = checkbox.getAttribute("title");
 			String[] str= title.substring("Select (".length(), title.length()-")".length()).split("\\s+");

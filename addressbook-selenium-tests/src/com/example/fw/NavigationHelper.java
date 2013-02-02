@@ -36,19 +36,19 @@ public class NavigationHelper extends WebDriverHelperBase{
 	
 	
 	private boolean onMainPage() {		
-		return driver.findElements(By.id(ilctrMainPage)).size()>0;
+		return manager.getDriver().findElements(By.id(ilctrMainPage)).size()>0;
 	}
 
 	public void groupPage() {	
 		if (!onGroupPage()){
-			driver.findElement(By.linkText(llctrGroupsPage)).click();			
+			manager.getDriver().findElement(By.linkText(llctrGroupsPage)).click();			
 		}
 		
 	}	
 
 	private boolean onGroupPage() {
-		if (driver.getCurrentUrl().contains("/group.php")
-				&& driver.findElements(By.name("new")).size()>0){
+		if (manager.getDriver().getCurrentUrl().contains("/group.php")
+				&& manager.getDriver().findElements(By.name("new")).size()>0){
 			return true;
 		}
 		else {
@@ -58,7 +58,7 @@ public class NavigationHelper extends WebDriverHelperBase{
 	}
 
 	public void returnMainPage() {
-		driver.findElement(By.linkText(llctrMainPage)).click();
+		manager.getDriver().findElement(By.linkText(llctrMainPage)).click();
 	}
 	
 	

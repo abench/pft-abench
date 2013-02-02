@@ -104,7 +104,7 @@ public class GroupHelper extends WebDriverHelperBase{
 	private void rebuildCache() {
 		cachedGroups = new SortedListOf<GroupData>();
 		manager.navigateTo().groupPage();
-		List<WebElement> checkboxes = driver.findElements(By.name(nlctrGroupCheckbox));
+		List<WebElement> checkboxes = manager.getDriver().findElements(By.name(nlctrGroupCheckbox));
 		for (WebElement checkbox : checkboxes) {			
 			String atr = checkbox.getAttribute("title");
 			String title = atr.substring("Select (".length(), atr.length()-")".length());

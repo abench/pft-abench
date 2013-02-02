@@ -16,6 +16,7 @@ public class ApplicationManager {
 	private ContactHelper contactHelper;
 	private String alctrMainPage 	= "/addressbookv4.1.4/";	// default value
 	private Properties properties;
+	private HibernateHelper hibernateHelper;
 	
 //	private RandomDataHelper dataHelper;
 
@@ -52,7 +53,17 @@ public class ApplicationManager {
 			contactHelper = new ContactHelper(this);			
 		}
 		return contactHelper;
-	}	
+	}
+	
+	public HibernateHelper getHibernateHelper() {
+		if (hibernateHelper == null) {
+			hibernateHelper = new HibernateHelper(this);			
+		}
+		return hibernateHelper;
+
+		
+	}
+
 	public WebDriver getDriver(){
 		String browser = properties.getProperty("browser");
 		if (driver == null){
@@ -77,4 +88,5 @@ public class ApplicationManager {
 	public void stop() {
 		driver.quit();		
 	}
+
 }
