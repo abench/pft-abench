@@ -17,6 +17,7 @@ public class ApplicationManager {
 	private String alctrMainPage 	= "/addressbookv4.1.4/";	// default value
 	private Properties properties;
 	private HibernateHelper hibernateHelper;
+	private ApplicationModel model;
 	
 //	private RandomDataHelper dataHelper;
 
@@ -24,7 +25,11 @@ public class ApplicationManager {
 	public ApplicationManager(Properties properties){
 		
 		this.properties = properties;
-
+		model = new ApplicationModel();
+		model.setGroups(getHibernateHelper().listGroups());
+	}
+	public ApplicationModel getModel(){
+		return model;
 	}
 
 //	public RandomDataHelper getDataHelper(){

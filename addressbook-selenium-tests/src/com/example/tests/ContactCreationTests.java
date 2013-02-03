@@ -16,8 +16,9 @@ public class ContactCreationTests extends TestBaseContact {
 
 	@Test(dataProvider="contactsFromCsvFile")
 	public void testCreateContact(ContactData contact) throws Exception {
-		
 		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();
+		
+		//SortedListOf<ContactData> oldList = new SortedListOf<ContactData>(app.getHibernateHelper().listGroups());
 		
 		app.getContactHelper().createContact(contact);
 		// store state after test

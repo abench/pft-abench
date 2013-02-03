@@ -17,7 +17,7 @@ public class GroupCreationTests extends TestBaseGroup {
 	@Test(dataProvider="groupsFromCsvFile")
 	public void testGroupCreationWithValidData(GroupData group) throws Exception {
 		// save old state
-		SortedListOf<GroupData> oldList = app.getGroupHelper().getGroups();
+		SortedListOf<GroupData> oldList = new SortedListOf<GroupData>(app.getHibernateHelper().listGroups());
 		
 		// execute actions
 		app.getGroupHelper().createGroup(group);
