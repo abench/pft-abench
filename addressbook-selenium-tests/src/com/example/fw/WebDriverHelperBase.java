@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public abstract class WebDriverHelperBase extends HelperBase{
 	//protected ApplicationManager manager;
-	private WebDriver driver;
+	protected WebDriver driver;
 	
 	public WebDriverHelperBase(ApplicationManager manager){
 		super(manager);

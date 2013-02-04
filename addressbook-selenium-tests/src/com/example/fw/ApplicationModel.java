@@ -13,6 +13,15 @@ public class ApplicationModel {
 	public void setGroups(List<GroupData> groups){
 		this.groups = new SortedListOf<GroupData>(groups);	
 	}
+	public ApplicationModel addGroup(GroupData group) {
+		groups.add(group);
+		return this;		
+	}
+	
+	public ApplicationModel removeGroup(int index) {
+		groups.remove(index);
+		return this;
+	}
 	
 
 }

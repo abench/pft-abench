@@ -23,7 +23,7 @@ public class GroupCreationTests extends TestBaseGroup {
 		app.getGroupHelper().createGroup(group);
 		
 		// save new state
-		SortedListOf<GroupData> newList = app.getGroupHelper().getGroups();
+		SortedListOf<GroupData> newList = app.getModel().getGroups();
 		
 		//
 		// compare old and new state
@@ -33,6 +33,15 @@ public class GroupCreationTests extends TestBaseGroup {
 		assertEquals(oldList.size()+1, newList.size());
 		
 		// by content
-		assertThat(newList, equalTo(oldList.withAdded(group)));		
+		if (wantToCheck()){
+			if ("yes".equals(app.getProperty("check.db"))){
+				assertThat(app.getModel().getGroups(), equalTo(app.getHibernateHelper().listGroups()));		
+			}
+			
+			if ("yes".equals(app.getProperty("check.ui"))){
+				assertThat(app.getModel().getGroups(), equalTo(app.getGroupHelper().getUiGroups()));	
+			}	
+		}
+		
 	}
 } 

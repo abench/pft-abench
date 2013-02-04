@@ -16,7 +16,7 @@ public class GroupModificationTests extends TestBaseGroup{
 	@Test(dataProvider="randomValidGroupGenerator")
 	public void modifySomeGroup(GroupData group){
 		// save old state
-		SortedListOf<GroupData> oldList = app.getGroupHelper().getGroups();
+		SortedListOf<GroupData> oldList = new SortedListOf<GroupData>(app.getHibernateHelper().listGroups());
 
 		// execute test
 		Random rnd = new Random();
@@ -25,7 +25,7 @@ public class GroupModificationTests extends TestBaseGroup{
 		app.getGroupHelper().modifyGroup(index,group);
 		
 		// save new state
-		SortedListOf<GroupData> newList = app.getGroupHelper().getGroups();
+		SortedListOf<GroupData> newList = app.getModel().getGroups();
 		// compare quantity
 		assertEquals(oldList.size(),newList.size());
 		// Compare content

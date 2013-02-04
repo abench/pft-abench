@@ -1,5 +1,6 @@
 package com.example.fw;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -38,7 +39,7 @@ public class GroupHelper extends WebDriverHelperBase{
 
 	public GroupHelper submitGroupPage() {
 		click(By.name(nlctrSubmit));
-		cachedGroups = null;
+		//cachedGroups = null;
 		return this;
 	}
 	
@@ -75,7 +76,7 @@ public class GroupHelper extends WebDriverHelperBase{
 
 	public GroupHelper submitGroupModification() {
 		click(By.name(nlctrUpdateBtn));
-		cachedGroups = null;
+		//cachedGroups = null;
 		return this;
 	}
 
@@ -85,34 +86,12 @@ public class GroupHelper extends WebDriverHelperBase{
 	
 	private void submitDeletion() {
 		click(By.name(nlctrDeleteButton));
-		cachedGroups = null;
+		//cachedGroups = null;
 	}
 	
 	
 	//-----------------------------------------------------------------------------------------
 	
-//	private SortedListOf<GroupData> cachedGroups;
-//	
-//	public SortedListOf<GroupData> getGroups() {
-//		if (cachedGroups==null){
-//			rebuildCache();
-//		}
-//		return cachedGroups;
-//		
-//	}
-//
-//	private void rebuildCache() {
-//		cachedGroups = new SortedListOf<GroupData>();
-//		manager.navigateTo().groupPage();
-//		List<WebElement> checkboxes = manager.getDriver().findElements(By.name(nlctrGroupCheckbox));
-//		for (WebElement checkbox : checkboxes) {			
-//			String atr = checkbox.getAttribute("title");
-//			String title = atr.substring("Select (".length(), atr.length()-")".length());
-//			cachedGroups.add(new GroupData().withGroupName(title));
-//		}
-//		
-//			
-//	}
 
 	public GroupHelper createGroup(GroupData group) {
 		manager.navigateTo().groupPage();
@@ -144,6 +123,20 @@ public class GroupHelper extends WebDriverHelperBase{
 		manager.getModel().removeGroup(index);
 		//rebuildCache();
 		return this;
+		
+	}
+	public SortedListOf<GroupData> getUiGroups(){
+		SortedListOf<GroupData> groups = new SortedListOf<GroupData>();
+		manager.navigateTo().groupPage();
+		
+		List<WebElement> checkboxes = driver.findElements(By.name("selected[]"));
+		for (WebElement checkbox : checkboxes) {
+			String title = checkbox.getAttribute("title");
+			String name = title.substring("Select(".length(), title.length() - ")".length());
+			groups.add(new GroupData().withGroupName(name));
+		}
+		
+		return groups;
 		
 	}
 
