@@ -19,26 +19,18 @@ public class ApplicationManager {
 	private HibernateHelper hibernateHelper;
 	private ApplicationModel model;
 	
-//	private RandomDataHelper dataHelper;
-
-	
 	public ApplicationManager(Properties properties){
 		
 		this.properties = properties;
 		model = new ApplicationModel();
 		model.setGroups(getHibernateHelper().listGroups());
+		model.setContacts(getHibernateHelper().listContacts());
 	}
+	
 	public ApplicationModel getModel(){
 		return model;
 	}
 
-//	public RandomDataHelper getDataHelper(){
-//		if (dataHelper == null) {
-//			dataHelper = new RandomDataHelper(this);			
-//		}
-//		return dataHelper;
-//	}
-	
 	public NavigationHelper navigateTo(){
 		if (navigationHelper == null) {
 			navigationHelper = new NavigationHelper(this);			
@@ -64,9 +56,7 @@ public class ApplicationManager {
 		if (hibernateHelper == null) {
 			hibernateHelper = new HibernateHelper(this);			
 		}
-		return hibernateHelper;
-
-		
+		return hibernateHelper;		
 	}
 
 	public WebDriver getDriver(){
@@ -85,9 +75,7 @@ public class ApplicationManager {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get(baseUrl + alctrMainPage);
 		}
-		return driver;
-		
-	
+		return driver;	
 	}
 	
 	public String getProperty(String key){

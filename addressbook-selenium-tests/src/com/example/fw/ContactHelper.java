@@ -53,7 +53,7 @@ public class ContactHelper extends WebDriverHelperBase{
 
 	public ContactHelper submitContactsForm() {
 		click(By.name(nlctrSubmitButton));
-		cachedContacts = null;
+		//cachedContacts = null;
 		return this;
 	}
 
@@ -106,7 +106,7 @@ public class ContactHelper extends WebDriverHelperBase{
 	
 	private void submitDeletion() {
 		click(By.xpath(xlctrDeleteButton));
-		cachedContacts = null;
+		//cachedContacts = null;
 	}
 	
 	//index start from 0 
@@ -123,42 +123,54 @@ public class ContactHelper extends WebDriverHelperBase{
 
 	public ContactHelper updateContactsForm() {		
 		click(By.xpath(xlctrUpdateButton));
-		cachedContacts = null;
+		//cachedContacts = null;
 		return this;
 	}
 
 //------------------------------------------------------------------------
 	
-	private SortedListOf<ContactData> cachedContacts;
-	
-	public SortedListOf<ContactData> getContacts(){
-		
-		if (cachedContacts==null){
-			rebuildCache();
-		}
-		return cachedContacts;
-		
-	}
-
-	
-	private void rebuildCache() {
-		cachedContacts = new SortedListOf<ContactData>();
+//	private SortedListOf<ContactData> cachedContacts;
+//	
+//	public SortedListOf<ContactData> getContacts(){
+//		
+//		if (cachedContacts==null){
+//			rebuildCache();
+//		}
+//		return cachedContacts;
+//		
+//	}
+//
+//	
+//	private void rebuildCache() {
+//		cachedContacts = new SortedListOf<ContactData>();
+//		manager.navigateTo().mainPage();
+//		List<WebElement> checkboxes= manager.getDriver().findElements(By.name(nctrlContactCheckbox));
+//		for (WebElement checkbox:checkboxes){			
+//			String title = checkbox.getAttribute("title");
+//			String[] str= title.substring("Select (".length(), title.length()-")".length()).split("\\s+");
+//			cachedContacts.add(new ContactData().withLastname(str[1]));
+//		}
+//			
+//	}
+//
+	public SortedListOf<ContactData> getUiContacts(){
+		SortedListOf<ContactData> contacts = new SortedListOf<ContactData>();
 		manager.navigateTo().mainPage();
 		List<WebElement> checkboxes= manager.getDriver().findElements(By.name(nctrlContactCheckbox));
 		for (WebElement checkbox:checkboxes){			
 			String title = checkbox.getAttribute("title");
 			String[] str= title.substring("Select (".length(), title.length()-")".length()).split("\\s+");
-			cachedContacts.add(new ContactData().withLastname(str[1]));
+			contacts.add(new ContactData().withLastname(str[1]));
 		}
-			
+		return contacts;
 	}
-
 	public ContactHelper createContact(ContactData contact) {		
 		initContactCreation();		
 		fillContactsForm(contact,CREATION);
 		submitContactsForm();			
 		returnMainPage();
-		rebuildCache();
+		manager.getModel().addContact(contact);
+		//rebuildCache();
 		return this;
 	}
 
@@ -167,7 +179,8 @@ public class ContactHelper extends WebDriverHelperBase{
 		fillContactsForm(contact, MODIFICATION);
 		updateContactsForm();
 		openMainPage();
-		rebuildCache();
+		manager.getModel().removeContact(index).addContact(contact);
+		//rebuildCache();
 		return this;
 	}
 	
@@ -175,7 +188,8 @@ public class ContactHelper extends WebDriverHelperBase{
 		initContactModificationByIndex(index);		
 		submitDeletion();
 		returnMainPage();
-		rebuildCache();
+		manager.getModel().removeContact(index);
+		//rebuildCache();
 		return this;
 	}
 
