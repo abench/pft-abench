@@ -3,6 +3,8 @@ package com.example.tests;
 import static com.example.tests.GroupDataGenerator.generateRandomGroups;
 import static com.example.tests.GroupDataGenerator.loadGroupsFromCsvFile;
 import static com.example.tests.GroupDataGenerator.loadGroupsFromXmlFile;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +29,22 @@ public class TestBaseGroup extends TestBase {
 	@DataProvider
 	public Iterator<Object[]> groupsFromXmlFile() throws IOException {
 		return wrapListForDataProvider(loadGroupsFromXmlFile(new File("groups.xml"))).iterator();
+	}
+
+	public void compareGroupModelWithUi() {
+		if (wantToCheck()){			
+			if ("yes".equals(app.getProperty("check.ui"))){
+				assertThat(app.getModel().getGroups(), equalTo(app.getGroupHelper().getUiGroups()));	
+			}	
+		}
+	}
+
+	public void compareGroupModelWithDatabase() {
+		if (wantToCheck()){
+			if ("yes".equals(app.getProperty("check.db"))){
+				assertThat(app.getModel().getGroups(), equalTo(app.getHibernateHelper().listGroups()));		
+			}
+		}
 	}
 
 	public static List<Object[]> wrapListForDataProvider(List<GroupData> groups) {

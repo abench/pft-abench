@@ -3,6 +3,8 @@ package com.example.tests;
 import static com.example.tests.ContactDataGenerator.generateRandomContacts;
 import static com.example.tests.ContactDataGenerator.loadContactsFromCsvFile;
 import static com.example.tests.ContactDataGenerator.loadContactsFromXmlFile;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +33,23 @@ public class TestBaseContact extends TestBase {
 	}
 
 	
+	public void compareContactsModelWithUi() {
+		if (wantToCheck()){
+			
+			if ("yes".equals(app.getProperty("check.ui"))){
+				assertThat(app.getModel().getGroups(), equalTo(app.getGroupHelper().getUiGroups()));	
+			}	
+		}
+	}
+
+	public void compareContactsModelWithDatabase() {
+		if (wantToCheck()){
+			if ("yes".equals(app.getProperty("check.db"))){
+				assertThat(app.getModel().getContacts(), equalTo(app.getHibernateHelper().listContacts()));		
+			}
+		}
+	}
+
 	public static List<Object[]> wrapContactListForDataProvider(List<ContactData> contacts) {
 		List<Object[]> list = new ArrayList<Object[]>();
 		for (ContactData contact : contacts) {

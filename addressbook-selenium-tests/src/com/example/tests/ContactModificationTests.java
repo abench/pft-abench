@@ -1,8 +1,6 @@
 package com.example.tests;
 
 import static org.testng.AssertJUnit.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 import java.util.Random;
 
@@ -15,22 +13,19 @@ public class ContactModificationTests extends TestBaseContact {
 	@Test(dataProvider="randomValidContactGenerator")
 	public void modifySomeContact(ContactData contact){
 		//store state before test
-		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();
-		
-		//execute test steps
-		
+		SortedListOf<ContactData> oldList = (SortedListOf<ContactData>) app.getHibernateHelper().listContacts();		
+		//execute test steps		
 		Random rnd = new Random();
 		int index = rnd.nextInt(oldList.size()-1);
-
 		app.getContactHelper().modifyContact(contact,index);		
-		
 		//store state after test
-		SortedListOf<ContactData> newList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> newList = app.getModel().getContacts();
 		//Compare
-		// by length
+		//  length
 		assertEquals(oldList.size(),newList.size());
-		// by content
-		assertThat(newList, equalTo(oldList.without(index).withAdded(contact)));
+		//  content
+		compareContactsModelWithDatabase();		
+		compareContactsModelWithUi();
 	}
 	
 //	@Test

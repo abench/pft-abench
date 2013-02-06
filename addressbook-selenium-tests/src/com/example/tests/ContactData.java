@@ -19,25 +19,6 @@ public class ContactData implements Comparable<ContactData>{
 	public ContactData() {
 	}
 
-	
-	
-//	@Override
-//	public String toString() {
-//		return "ContactData [lastname=" + lastname + "]";
-//	}
-
-//	@Override
-//	public String toString() {
-//		return "ContactData [firstname=" + firstname + ", lastname=" + lastname
-//				+ ", address=" + address + ", phoneHome=" + phoneHome
-//				+ ", phoneMobile=" + phoneMobile + ", phoneWork=" + phoneWork
-//				+ ", email=" + email + ", email2=" + email2 + ", birthDay="
-//				+ birthDay + ", birthMonth=" + birthMonth + ", birthYear="
-//				+ birthYear + ", address2=" + address2 + ", home2=" + home2
-//				+ "]";
-//	}
-
-
 
 	@Override
 	public int hashCode() {

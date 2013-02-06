@@ -1,8 +1,6 @@
 package com.example.tests;
 
 import static org.testng.AssertJUnit.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 import java.util.Random;
 
@@ -17,23 +15,17 @@ public class GroupRemovalTests extends TestBaseGroup{
 	public void deleteSomeGroup(){
 		// save old state
 		SortedListOf<GroupData> oldList = new SortedListOf<GroupData>(app.getHibernateHelper().listGroups());
-
 		// execute test
 		Random rnd = new Random();
-		int index = rnd.nextInt(oldList.size()-1);
-		
-		app.getGroupHelper().deleteGroup(index);
-			
-		
+		int index = rnd.nextInt(oldList.size()-1);		
+		app.getGroupHelper().deleteGroup(index);		
 		// save new state
-		SortedListOf<GroupData> newList = app.getModel().getGroups();
-		
+		SortedListOf<GroupData> newList = app.getModel().getGroups();		
 		// compare quantity
-		assertEquals(oldList.size()+1,newList.size());
-		
+		assertEquals(oldList.size()+1,newList.size());		
 		// Compare content
-		assertThat(newList, equalTo(oldList.without(index)));
-
+		compareGroupModelWithDatabase();
+		compareGroupModelWithUi();
 	}
 
 }

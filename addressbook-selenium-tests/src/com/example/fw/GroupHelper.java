@@ -1,6 +1,5 @@
 package com.example.fw;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -30,7 +29,7 @@ public class GroupHelper extends WebDriverHelperBase{
 	private static final String xlctrGroupSelectorRht 	= "]";
 	private static final String nlctrEditBtn 			= "edit";
 	private static final String nlctrUpdateBtn 			= "update";
-	private static final String nlctrGroupCheckbox		= "selected[]";
+	//private static final String nlctrGroupCheckbox		= "selected[]";
 	private static final String llctrGroupPage2 = "group page";
 	
 	public GroupHelper(ApplicationManager manager) {

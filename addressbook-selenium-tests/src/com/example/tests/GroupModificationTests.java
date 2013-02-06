@@ -1,9 +1,6 @@
 package com.example.tests;
 
 import static org.testng.AssertJUnit.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.*;
-
 
 import java.util.Random;
 
@@ -17,19 +14,16 @@ public class GroupModificationTests extends TestBaseGroup{
 	public void modifySomeGroup(GroupData group){
 		// save old state
 		SortedListOf<GroupData> oldList = new SortedListOf<GroupData>(app.getHibernateHelper().listGroups());
-
 		// execute test
 		Random rnd = new Random();
 		int index = rnd.nextInt(oldList.size()-1);
-
-		app.getGroupHelper().modifyGroup(index,group);
-		
+		app.getGroupHelper().modifyGroup(index,group);		
 		// save new state
 		SortedListOf<GroupData> newList = app.getModel().getGroups();
 		// compare quantity
 		assertEquals(oldList.size(),newList.size());
 		// Compare content
-		assertThat(newList, equalTo(oldList.without(index).withAdded(group)));
+		compareGroupModelWithDatabase();
+		compareGroupModelWithUi();		
 	}
-
 }
