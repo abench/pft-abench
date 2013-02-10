@@ -44,6 +44,16 @@ public abstract class WebDriverHelperBase extends HelperBase{
 		}
 		
 	}
+	
+	public void openUrl(String location){
+		driver.get(manager.getProperty("baseURL")+
+				   manager.getProperty("firstPage")+
+				   location);
+	}
+
+	public void openAbsoluteUrl(String location){
+		driver.get(location);
+	}
 
 	
 // candidate to remove

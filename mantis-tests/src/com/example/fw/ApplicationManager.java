@@ -11,46 +11,25 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 public class ApplicationManager {
 	private WebDriver driver;
 	public String baseUrl;
-	private NavigationHelper navigationHelper;
-	private GroupHelper groupHelper;
-	private ContactHelper contactHelper;
 	private String alctrMainPage 	= "/addressbookv4.1.4/";	// default value
 	private Properties properties;
 	private HibernateHelper hibernateHelper;
 	private ApplicationModel model;
+	private AccountHelper accountHelper;
+	private MailHelper mailHelper;
 	
 	public ApplicationManager(Properties properties){
 		
 		this.properties = properties;
 		model = new ApplicationModel();
-		model.setGroups(getHibernateHelper().listGroups());
-		model.setContacts(getHibernateHelper().listContacts());
+//		model.setGroups(getHibernateHelper().listGroups());
+//		model.setContacts(getHibernateHelper().listContacts());
 	}
 	
 	public ApplicationModel getModel(){
 		return model;
 	}
 
-	public NavigationHelper navigateTo(){
-		if (navigationHelper == null) {
-			navigationHelper = new NavigationHelper(this);			
-		}
-		return navigationHelper;
-	}
-
-	public GroupHelper getGroupHelper(){
-		if (groupHelper == null) {
-			groupHelper = new GroupHelper(this);			
-		}
-		return groupHelper;
-	}
-
-	public ContactHelper getContactHelper(){
-		if (contactHelper == null) {
-			contactHelper = new ContactHelper(this);			
-		}
-		return contactHelper;
-	}
 	
 	public HibernateHelper getHibernateHelper() {
 		if (hibernateHelper == null) {
@@ -59,6 +38,22 @@ public class ApplicationManager {
 		return hibernateHelper;		
 	}
 
+	public AccountHelper getAccountHelper() {
+		if (accountHelper == null) {
+			accountHelper = new AccountHelper(this);			
+		}
+		return accountHelper;
+	}
+
+	public MailHelper getMailHelper() {
+		if (mailHelper == null) {
+			mailHelper = new MailHelper(this);			
+		}
+
+		return mailHelper;
+	}
+	
+	
 	public WebDriver getDriver(){
 		String browser = properties.getProperty("browser");
 		if (driver == null){
@@ -84,5 +79,7 @@ public class ApplicationManager {
 	public void stop() {
 		driver.quit();		
 	}
+
+
 
 }
