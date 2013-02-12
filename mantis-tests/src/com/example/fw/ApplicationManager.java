@@ -17,6 +17,7 @@ public class ApplicationManager {
 	private ApplicationModel model;
 	private AccountHelper accountHelper;
 	private MailHelper mailHelper;
+	private JamesHelper jamesHelper;
 	
 	public ApplicationManager(Properties properties){
 		
@@ -53,6 +54,13 @@ public class ApplicationManager {
 		return mailHelper;
 	}
 	
+	public JamesHelper getJamesHelper() {
+		if (jamesHelper == null) {
+			jamesHelper = new JamesHelper(this);			
+		}
+
+		return jamesHelper;
+	}
 	
 	public WebDriver getDriver(){
 		String browser = properties.getProperty("browser");
@@ -79,6 +87,7 @@ public class ApplicationManager {
 	public void stop() {
 		driver.quit();		
 	}
+
 
 
 

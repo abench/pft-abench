@@ -7,21 +7,20 @@ import org.apache.commons.net.telnet.TelnetClient;
 
 public class JamesHelper extends HelperBase{
 
-	private AppManager app;
-
 	private TelnetClient telnet = new TelnetClient();
 	private InputStream in;
 	private PrintStream out;
 
-	public JamesHelper(AppManager app) {
-		this.app = app;
+
+	public JamesHelper(ApplicationManager manager) {
+		super(manager);
 	}
 
 	private void initTelnetSession() {
-		String mailserver = app.getProperty("mailserver.host");
-		int port = Integer.parseInt(app.getProperty("mailserver.port"));
-		String login = app.getProperty("mailserver.adminlogin");
-		String password = app.getProperty("mailserver.adminpassword");
+		String mailserver = manager.getProperty("mailserver");
+		int port = Integer.parseInt(manager.getProperty("mailserver.adminport"));
+		String login = manager.getProperty("mailserver.adminlogin");
+		String password = manager.getProperty("mailserver.adminpassword");
 		
 		try {
 			telnet.connect(mailserver, port);

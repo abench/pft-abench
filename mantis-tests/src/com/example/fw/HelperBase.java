@@ -1,5 +1,4 @@
 package com.example.fw;
-// 09:07
 
 public class HelperBase {
 	protected ApplicationManager manager;
@@ -7,6 +6,13 @@ public class HelperBase {
 		this.manager = manager;
 //		this.driver = manager.driver;
 	}
+	public void pause(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {			
+			e.printStackTrace();
+		}
+	}	
 	
 
 }

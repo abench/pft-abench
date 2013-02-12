@@ -14,18 +14,23 @@ public class SignupTest extends TestBase{
 							.withPassword("123456")
 							.withEmail("testuser1@localhost");
 	@BeforeClass
-	public void createUser(){
-		app.getJamesHelper().createUser(user);		
+	public void createMailUser(){
+		if (!app.getJamesHelper().doesUserExist(user.login)){
+			app.getJamesHelper().createUser(user.login, user.password);
+		}				
 	}
 	
 	@AfterClass
-	public void createUser(){
-		app.getJamesHelper().createUser(user);		
+	public void deleteMailUser(){
+		if (app.getJamesHelper().doesUserExist(user.login)){
+			app.getJamesHelper().deleteUser(user.login);			
+		}				
 	}
 	
 	@Test
 	public void newUserShouldSignup(){
 		app.getAccountHelper().signup(user);
+		app.getAccountHelper().login(user);
 		assertTrue(app.getAccountHelper().isLogged(user));
 	}
 

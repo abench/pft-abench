@@ -14,10 +14,14 @@ public class AccountHelper extends WebDriverHelperBase {
 
 	public void signup(User user) {
 		openUrl("/");
-		click(By.cssSelector("span.bracket-link"));
+		//click(By.cssSelector("span.bracket-link""span.bracket-link"));
+		click(By.xpath("//*[@class='bracket-link']/a"));
 		type(By.name("username"), user.login);
+		//pause(3000);
 		type(By.name("email"),user.email);
 		click(By.cssSelector("input.button"));
+		
+		pause(10000);
 		
 		String msg = manager.getMailHelper().getNewMail(user.login, user.password);
 		
@@ -32,6 +36,8 @@ public class AccountHelper extends WebDriverHelperBase {
 		//openUrl("signup_page.php");
 		
 	}
+
+	
 	
 	public String getConfirmationLink(String text) {
 		Pattern regex = Pattern.compile("http\\S*");
@@ -49,4 +55,10 @@ public class AccountHelper extends WebDriverHelperBase {
 		return false;
 	}
 
+	public void login(User user) {
+		openUrl("/");
+		type(By.name("username"), user.login);
+		type(By.name("email"),user.email);
+		click(By.cssSelector("input.button"));
+	}
 }
